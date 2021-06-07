@@ -1,0 +1,31 @@
+main{
+
+}
+main section{
+    width: 80vw;
+    margin: auto;
+}
+
+main section object{
+    width: 100%;
+    height: 800px;
+
+}
+main section article{
+    width: 100%;
+    height: 500px;
+    /* border: 1px solid #000; */
+}
+main section article img{
+    height: 300px;
+    width: 250px;
+    margin: 20px;
+    float: left;
+}
+main section article #descicao{
+    height: calc(100% - 300px) ;
+    width:calc(100% - 300px);
+    margin-top: 20px;
+    /* border: 1px solid #f00; */
+    float: right;
+}

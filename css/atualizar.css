@@ -1,0 +1,211 @@
+
+
+main{
+    width: 80vw;
+    /* height: 100%; */
+    margin: auto;
+    /* height: calc(100vh - 60px) ; */
+    background: rgb(209, 211, 218);
+    
+}
+
+/* FORMULARIO DE BUSCA DE LIVROS  */
+
+
+#buscar{
+    background: initial;
+    height: 100px;
+    width: 100%;
+    display: block;
+    border-bottom: 1px solid #444;
+   
+
+}
+
+
+#buscar form{
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+   
+    /* margin: 10px 0px; */
+    /* background: seagreen; */
+}
+#buscar form input{
+    width: 350px;
+    height: 40px;
+    font-size: 20px;
+    background: #fff;
+    color: #000;
+    border-radius: 10px 0px 0px 10px;
+    border: 1px solid #999;
+    padding: 10px;
+}
+#buscar form input:focus {
+    border: 1px solid rgb(26, 25, 25);
+    /* background: magenta; */
+}
+
+#buscar form button {
+    width: 50px;
+    height: 40px;
+    border-radius: 0px 10px 10px 0px;
+    border: 1px solid #999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+#buscar form button img {
+    width: 25px;
+    height: 25px;
+
+}
+#buscar form button:hover {
+    background: linear-gradient(to bottom, rgb(185, 179, 179) , rgb(128, 123, 123) );
+}
+
+
+
+/* FORMULARIO PARA ATUALIZAR  */
+
+#form-atualizar{     
+    /* padding: 20px 10px; */
+    /* background-color: rgb(71, 24, 24); */
+    
+   
+}
+#form-atualizar form{
+    width: 500px;
+    background: rgb(190, 186, 186);
+    border: 1px solid #000;
+    /* margin:auto; */
+    float: right;
+    margin-top: 25px;
+    padding: 25px;
+}
+#form-atualizar form input,textarea,select, option{
+    font-size: 18px;
+    padding: 5px;
+}
+#form-atualizar  form input[type='text'],select,option{
+    border: 1px solid #000;
+
+}
+#form-atualizar form select,option{
+    width: 100%;
+    margin: 10px 0px;
+
+    
+}
+#form-atualizar form input[type='text']{
+    display: block;
+    width: 100%;
+    height: 40px;
+    margin: 10px 0px;
+    padding: 5px;
+
+}
+#form-atualizar form textarea{
+    display: block;
+    width: 100%;
+    margin: 10px 0px;
+    padding: 5px;
+}
+#form-atualizar form label, input[type='file']{
+    display: block;
+    width: 100%;
+    margin-top: 2px;
+   
+
+}
+#form-atualizar form input[type='submit']{
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    padding: 5px;
+   
+}
+#form-atualizar form fieldset{
+    padding: 15px;
+    margin: 20px 0px;
+}
+#form-atualizar form fieldset legend{
+    padding: 0px 5px;
+    margin: 0;
+}
+#form-atualizar input[type='text']:focus{
+    border: 1px solid #f00;
+}
+#form-atualizar textarea:focus{
+    border: 1px solid #f00;
+}
+
+
+
+/*
+    LISTA DE LIVROS DO RESULTADO 
+*/
+
+#lista-livros{
+    
+    width: 100%;
+    /* height: 100vh; */
+    background: rgb(209, 211, 218);
+
+}
+#lista-livros ul{
+    width: 800px;
+    float: left;
+    /* height: 50vh;  */
+    /* background: rgba(126, 40, 40, 0.6); */
+    /* border: 1px solid #f00; */
+}
+
+#lista-livros ul li {
+    width: 230px;
+    height: 380px;
+    /* border: 1px solid #000; */
+    float: left;
+    margin: 25px 20px 15px 0px ;
+    text-align: center;
+    /* background: rgba(59, 55, 55, 0.6); */
+
+}
+#lista-livros ul li img{
+    width: 230px;
+    height: 250px;
+    padding: 5px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, .6);
+    
+}
+
+#lista-livros ul li img:hover{
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 1);
+}
+
+
+#lista-livros ul li h3 {
+    display: block;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    padding-top:8px ;
+    height: 95px;
+}
+#lista-livros ul li h3 a:hover {
+    color: rgb(238, 14, 14);
+}
+#lista-livros ul li p a{
+    font-size: 14px; 
+    padding:4px 7px;
+    border: 1px solid #555;
+    border-radius: 5px;
+}
+#lista-livros ul li p a:hover{
+    color: rgb(246, 17, 17);
+
+    border: 1px solid rgb(246, 17, 17);
+}
+
