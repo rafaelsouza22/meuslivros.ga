@@ -6,7 +6,7 @@ if (!(isset($_SESSION['id_usuario']) && !empty($_SESSION['id_usuario'])  && isse
 require_once("./class/BuscarLivro.php");
 require_once("./class/AtualizarLivro.php");
 require_once("./class/SelecionarLivroPorId.php");
-
+require_once("./class/Conexao.php");
 $atualizar = new atualizarLivro();
 $buscar = new BuscarLivro();
 $selecionar = new SelecionarLivroPorId(); 
@@ -150,7 +150,7 @@ if (isset($_POST['titulo']) && !empty($_POST['titulo']) ) {
     </pre>
     <p>SELECIONADO</p>
     <pre>
-        <?php var_dump($livroSelecionado);  ?>
+        
     </pre>
     
 </body>
