@@ -22,12 +22,4 @@ abstract class Conexao{
     }
 }
 
-        
-class Teste extends Conexao {
-    $pdo = parent::conexao();
-    $res = $pdo->query("SELECT url_pdf_livro , url_capa_livro WHERE id_livro = $id");
-    $res->fetchObject();
-}
-$t = new Teste();
-     
-      
+   
