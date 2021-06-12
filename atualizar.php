@@ -52,9 +52,9 @@ if (isset($_POST['titulo']) && !empty($_POST['titulo'])) {
         echo "<pre>";
         var_dump($livro);
         echo "</pre>";
-        $id_livro = addslashes($_GET['id_livro']);
-        $livroSelecionado = $selecionar->selecionarLivroPorId($id_livro);
         //$a = $atualizar->atualizarLivro($livro);
+        $id_livro = addslashes($id);
+        $livroSelecionado = $selecionar->selecionarLivroPorId($id_livro);
         if ($a) {
             echo "<script> alert('Atualizado com SUCESSO!')</script>";
         } else {
