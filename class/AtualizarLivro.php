@@ -16,17 +16,22 @@ class AtualizarLivro extends Conexao
             $livroPdf = addslashes($livro['livroPdf']);
             $livroCapa = addslashes($livro['livroCapa']);
             $erros = array();
+            
 
 
             // APAGANDO O LIVRO E CAPA
-
-            $sql = "SELECT url_pdf_livro, url_capa_livro FROM livros WHERE id_livro = '5' ";
-            $res = $pdo->query($sql);
-            $dados = $res->fetchObject();
-
-
-
-
+            if (!empty($id)) {
+                $sql = "SELECT url_pdf_livro, url_capa_livro FROM livros WHERE id_livro =  '$id' ";
+                $res = $pdo->query($sql);
+                $dados = $res->fetchObject();
+                if ($res->rowCount() == 1) {
+                    $res = unlink("./arquivos/capas/{$dados->url_capa_livro}");
+                    var_dump($res);
+                    $res = unlink("./arquivos/livros/{$dados->url_pdf_livro}");
+                    var_dump($res);
+                    echo "ok";
+                }
+            }
 
 
             // MOVENDO O LIVRO NOVO
@@ -34,9 +39,9 @@ class AtualizarLivro extends Conexao
                 $nomeLivro = explode('.', $livro['livroPdf']['name']);
                 $nomeCapa = explode('.', $livro['livroCapa']['name']);
                 if (($nomeLivro[sizeof($nomeLivro) - 1] == 'pdf') && ($nomeCapa[sizeof($nomeCapa) - 1] == 'jpg')) {
-                    $urlPdf = sha1($nomeLivro[0]) . '.' . $nomeLivro[sizeof($nomeLivro) - 1];
+                    $urlPdf = sha1($nomeLivro[0]) . rand(1000, 9999999) . '.' . $nomeLivro[sizeof($nomeLivro) - 1];
                     move_uploaded_file($livro['livroPdf']['tmp_name'], "./arquivos/livros/$urlPdf");
-                    $urlCapa = sha1($nomeCapa[0]) . '.' . $nomeCapa[sizeof($nomeCapa) - 1];
+                    $urlCapa = sha1($nomeCapa[0]) . rand(1000, 9999999) . '.' . $nomeCapa[sizeof($nomeCapa) - 1];
                     move_uploaded_file($livro['livroCapa']['tmp_name'], "./arquivos/capas/$urlCapa");
                 } else {
                     $erros = 'Você não pode fazer upload deste tipo de arquivo';
@@ -48,8 +53,8 @@ class AtualizarLivro extends Conexao
             }
 
 
-            // ATUALIZANDO DADOS DO LIVRO
-            /*$sql = "UPDATE livros SET titulo_livro = :titulo, descricao_livro = :descricao,autor_livro = :autor,
+            // ATUALIZANDO DADOS DO LIVRO/**/
+             $sql = "UPDATE livros SET titulo_livro = :titulo, descricao_livro = :descricao,autor_livro = :autor,
                 categoria_livro = :categoria , url_pdf_livro = :url_pdf , url_capa_livro = :url_capa WHERE id_livro = :id ";
             $con = $pdo->prepare($sql);
             $con->bindValue(':id',  $id);
@@ -67,32 +72,11 @@ class AtualizarLivro extends Conexao
             } else {
                 return false;
             }
-            */
+             
         } catch (PDOException $e) {
             echo "Erro no DB: {$e->getMessage()}";
         } catch (Exception $e) {
             echo "Erro: {$e->getMessage()}";
         }
-
-        /*-------------------------------  */
-
-        if (!empty($livro['livroPdf']['name']) && !empty($livro['livroCapa']['name'])) {
-            $nomeLivro = explode('.', $livro['livroPdf']['name']);
-            $nomeCapa = explode('.', $livro['livroCapa']['name']);
-            if (($nomeLivro[sizeof($nomeLivro) - 1] == 'pdf') && ($nomeCapa[sizeof($nomeCapa) - 1] == 'jpg')) {
-                $urlPdf = sha1($nomeLivro[0]) . '.' . $nomeLivro[sizeof($nomeLivro) - 1];
-                move_uploaded_file($livro['livroPdf']['tmp_name'], "./arquivos/livros/$urlPdf");
-                $urlCapa = sha1($nomeCapa[0]) . '.' . $nomeCapa[sizeof($nomeCapa) - 1];
-                move_uploaded_file($livro['livroCapa']['tmp_name'], "./arquivos/capas/$urlCapa");
-            } else {
-                $erros = 'Você não pode fazer upload deste tipo de arquivo';
-                return $erros;
-            }
-        } else {
-            $erros = 'Escolha um LIVRO e UMA CAPA';
-            return $erros;
-        }
-        return true;
     }
 }
-
