@@ -20,7 +20,7 @@ class AtualizarLivro extends Conexao
 
             // APAGANDO O LIVRO E CAPA
 
-            $sql = "SELECT * FROM livros WHERE id_livro = '5' ";
+            $sql = "SELECT url_pdf_livro, url_capa_livro FROM livros WHERE id_livro = '5' ";
             $res = $pdo->query($sql);
             $dados = $res->fetchObject();
 
