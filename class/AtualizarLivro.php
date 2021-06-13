@@ -20,27 +20,22 @@ class AtualizarLivro extends Conexao
             if (!empty($livroPdf['name']) && !empty($livroCapa['name'])) {
                 $nomeLivro = explode('.', $livroPdf['name']);
                 $nomeCapa = explode('.', $livroCapa['name']);
-                if (($nomeLivro[sizeof($nomeLivro) - 1] == 'pdf') && ($nomeCapa[sizeof($nomeCapa) - 1] == 'jpg')) {
-                    // APAGANDO O LIVRO E CAPA
-                    if (!empty($id)) {
+                if (($nomeLivro[sizeof($nomeLivro) - 1] == 'pdf') && ($nomeCapa[sizeof($nomeCapa) - 1] == 'jpg')) { 
+                    $urlPdf = sha1($nomeLivro[0]) . rand(1000, 99999999) . '.' . $nomeLivro[sizeof($nomeLivro) - 1];
+                    move_uploaded_file($livroPdf['tmp_name'], "./arquivos/livros/$urlPdf");
+                    $urlCapa = sha1($nomeCapa[0]) . rand(1000, 99999999) . '.' . $nomeCapa[sizeof($nomeCapa) - 1];
+                    move_uploaded_file($livroCapa['tmp_name'], "./arquivos/capas/$urlCapa");
+                     // APAGANDO O LIVRO E CAPA
+                     if (!empty($id)) {
                         $sql = "SELECT url_pdf_livro, url_capa_livro FROM livros WHERE id_livro =  '$id' ";
                         $res = $pdo->query($sql);
                         $dados = $res->fetchObject();
                         if ($res->rowCount() == 1) {
                             @$res = unlink("./arquivos/capas/{$dados->url_capa_livro}");
                             @$res = unlink("./arquivos/livros/{$dados->url_pdf_livro}");
-                            if (!$res) {
-                                return 6;
-                            }
                         }
                     }
-                    
-                    $urlPdf = sha1($nomeLivro[0]) . rand(1000, 99999999) . '.' . $nomeLivro[sizeof($nomeLivro) - 1];
-                    move_uploaded_file($livroPdf['tmp_name'], "./arquivos/livros/$urlPdf");
-                    $urlCapa = sha1($nomeCapa[0]) . rand(1000, 99999999) . '.' . $nomeCapa[sizeof($nomeCapa) - 1];
-                    move_uploaded_file($livroCapa['tmp_name'], "./arquivos/capas/$urlCapa");
                 } else {
-                    //$erros = 'Você não pode fazer upload deste tipo de arquivo';
                     return 1;
                 }
             } else {
