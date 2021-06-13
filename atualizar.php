@@ -67,6 +67,9 @@ if (isset($_POST['titulo']) && !empty($_POST['titulo'])) {
             case 5:
                 $erros = "ID não idetificado ";
                 break;
+            case 6:
+                $erros = "Erro na substituição do livro e capa";
+                break;
             default:
                 $erros = 'ERRO no switch!';
         }
