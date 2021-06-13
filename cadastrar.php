@@ -56,11 +56,11 @@ if (isset($_POST['titulo'])) {
                 <textarea name="descricao" id="descricao" cols="64" rows="10" placeholder="Descrição do livro"></textarea>
                 <input type="text" name="autor" id="autor" placeholder="Nome do Autor">
                 <select name="categoria" id="categoria">
-                    <option value="tecnologia">Tecnologia</option>
-                    <option value="finanças">Finanças</option>
-                    <option value="aventura">Aventura</option>
-                    <option value="autoajuda">Auto ajuda</option>
-                    <option value="filosofia">Filosofia</option>
+                    <option value="Tecnologia">Tecnologia</option>
+                    <option value="Finanças">Finanças</option>
+                    <option value="Aventura">Aventura</option>
+                    <option value="Autoajuda">Auto ajuda</option>
+                    <option value="Filosofia">Filosofia</option>
                 </select>
                 <fieldset>
                     <legend><label for="livroPdf">Selecionar um Livro *Somente .PDF</label></legend>

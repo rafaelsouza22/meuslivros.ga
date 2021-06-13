@@ -36,9 +36,9 @@ if (isset($_POST['titulo']) && !empty($_POST['titulo'])) {
         isset($_POST['titulo']) && !empty($_POST['titulo']) &&
         isset($_POST['descricao']) && !empty($_POST['descricao']) &&
         isset($_POST['autor']) && !empty($_POST['autor']) &&
-        isset($_POST['categoria']) && !empty($_POST['categoria'])/* &&
+        isset($_POST['categoria']) && !empty($_POST['categoria']) &&
         isset($_FILES['livroPdf']['name']) && !empty($_FILES['livroPdf']['name']) &&
-        isset($_FILES['livroCapa']['name']) && !empty($_FILES['livroCapa']['name']) */  //, 'livroPdf' => $livroPdf, 'livroCapa' => $livroCapa
+        isset($_FILES['livroCapa']['name']) && !empty($_FILES['livroCapa']['name'])
     ) {
         $id = addslashes($_POST['id_livro']);
         $titulo = addslashes($_POST['titulo']);
@@ -48,26 +48,37 @@ if (isset($_POST['titulo']) && !empty($_POST['titulo'])) {
         $livroPdf = $_FILES['livroPdf'];
         $livroCapa = $_FILES['livroCapa'];
         $livro = array('id_livro' => $id, 'titulo' => $titulo, 'descricao' => $descricao, 'autor' => $autor, 'categoria' => $categoria, 'livro_pdf' => $livroPdf, 'livro_capa' => $livroCapa);
-
-        echo "<pre>";
-        var_dump($livro);
-        echo "</pre>";
-        //$a = $atualizar->atualizarLivro($livro);
+        $a = $atualizar->atualizarLivro($livro);
         $id_livro = addslashes($id);
         $livroSelecionado = $selecionar->selecionarLivroPorId($id_livro);
-        if ($a) {
-            echo "<script> alert('Atualizado com SUCESSO!')</script>";
-        } else {
-            $erros = "*ERRO AO ATUALIZAR";
+        switch ($a) {
+            case 1:
+                $erros = "Você não pode fazer upload deste tipo de arquivo/livro";
+                break;
+            case 2:
+                $erros = "Escolha um LIVRO e UMA CAPA";
+                break;
+            case 3:
+                $erros = "Sucesso ao atualizar ";
+                break;
+            case 4:
+                $erros = "ERRO ao atualizar ";
+                break;
+            case 5:
+                $erros = "ID não idetificado ";
+                break;
+            default:
+                $erros = 'ERRO no switch!';
         }
     } else {
-        echo "Preencha todos os campos!";
+        $erros = "Preencha todos os campos!";
     }
 }
 
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -76,6 +87,7 @@ if (isset($_POST['titulo']) && !empty($_POST['titulo'])) {
     <link rel="stylesheet" href="./css/atualizar.css">
     <title>Atualizar livros </title>
 </head>
+
 <body>
     <?php require_once("./templetes/header.php"); ?>
     <main>
@@ -91,12 +103,17 @@ if (isset($_POST['titulo']) && !empty($_POST['titulo'])) {
                 <input type="hidden" name="id_livro" id="id_livro" value="<?php if (isset($livroSelecionado)) {
                                                                                 echo $livroSelecionado['id_livro'];
                                                                             } ?>">
+
                 <input type="text" name="titulo" id="titulo" placeholder="Titulo do livro" value="<?php if (isset($livroSelecionado)) {
                                                                                                         echo $livroSelecionado['titulo_livro'];
                                                                                                     } ?>">
-                <textarea name="descricao" id="descricao" cols="64" rows="10" placeholder="Descrição do livro"> <?php if (isset($livroSelecionado)) {
+
+
+                <textarea name="descricao" id="descricao" cols="64" rows="10" placeholder="Descrição do livro"><?php if (isset($livroSelecionado)) {
                                                                                                                     echo $livroSelecionado['descricao_livro'];
-                                                                                                                } ?></textarea>
+                                                                                                                } ?>
+                                                                                                                    
+                                                                                                               </textarea>
                 <input type="text" name="autor" id="autor" placeholder="Nome do Autor" value="<?php if (isset($livroSelecionado)) {
                                                                                                     echo $livroSelecionado['autor_livro'];
                                                                                                 } ?>">
@@ -127,7 +144,7 @@ if (isset($_POST['titulo']) && !empty($_POST['titulo'])) {
         <section id="lista-livros">
             <ul>
                 <?php
-                echo (!empty($_SESSION['buscar'])) ? "<p>Livros Achados por: ".$_SESSION['buscar']."</p>" : ''; 
+                echo (!empty($_SESSION['buscar'])) ? "<p>Livros Achados por: " . $_SESSION['buscar'] . "</p>" : '';
                 if (!empty($livrosBuscados)) {
                     //echo "<p>Livros Achados por: $texto</p>";
                     for ($i = 0; $i < count($livrosBuscados); $i++) {
