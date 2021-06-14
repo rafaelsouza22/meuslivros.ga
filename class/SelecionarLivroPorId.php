@@ -1,7 +1,6 @@
 <?php
 require_once("Conexao.php");
 class SelecionarLivroPorId extends Conexao{
-
     public function selecionarLivroPorId($id)
     {   
         $pdo = parent::conexao();
@@ -15,10 +14,6 @@ class SelecionarLivroPorId extends Conexao{
         }else{
             $dados = array();
         }
-        return $dados;
-
-        
-
-        
+        return $dados;  
     }
 }
