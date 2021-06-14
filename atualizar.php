@@ -3,30 +3,32 @@ session_start();
 if (!(isset($_SESSION['id_usuario']) && !empty($_SESSION['id_usuario'])  && isset($_SESSION['email_usuario']) && !empty($_SESSION['email_usuario']))) {
     header('Location: login.php');
 }
+require_once("./class/Conexao.php");
 require_once("./class/BuscarLivro.php");
 require_once("./class/AtualizarLivro.php");
 require_once("./class/SelecionarLivroPorId.php");
-require_once("./class/Conexao.php");
+require_once("./class/DeletarLivro.php");
 $atualizar = new atualizarLivro();
 $buscar = new BuscarLivro();
 $selecionar = new SelecionarLivroPorId();
+$deletar = new DeletarLivro();
 $texto = '';
 $livros = array();
 $erros = '';
 $_SESSION['buscar'] = '';
 
+// SELECIONANDO O ID_LIVRO DA URL
 if ((isset($_GET['id_livro']) && !empty($_GET['id_livro']))) {
     $id_livro = addslashes($_GET['id_livro']);
     $livroSelecionado = $selecionar->selecionarLivroPorId($id_livro);
 }
 
-
+// BUSCAR LIVROS
 if ((isset($_GET['buscar']) && !empty($_GET['buscar']))) {
     $texto = addslashes($_GET['buscar']);
     $_SESSION['buscar'] = $texto;
     $livrosBuscados = $buscar->buscarLivro($texto);
 }
-
 
 
 // para atualizar o livro
@@ -78,6 +80,22 @@ if (isset($_POST['titulo']) && !empty($_POST['titulo'])) {
     }
 }
 
+// APAGAR LIVRO
+if (isset($_POST['btn-apagar']) && !empty($_POST['btn-apagar']) )
+    if ( isset($_POST['id_livro']) && !empty($_POST['id_livro']) && isset($_POST['titulo']) && !empty($_POST['titulo']) ) {
+        $id = addslashes($_POST['id_livro']);
+        $titulo = addslashes($_POST['titulo']);
+        $erros = "ID: $id , APAGADO"; 
+
+        if($id){
+            $res = $deletar->deletar($id);
+            //$res = 1;
+            if($res){
+                $erros = "O Livro,( $titulo ),<br> FOI APAGADO. ";
+            }
+        }
+
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -112,11 +130,7 @@ if (isset($_POST['titulo']) && !empty($_POST['titulo'])) {
                                                                                                     } ?>">
 
 
-                <textarea name="descricao" id="descricao" cols="64" rows="10" placeholder="Descrição do livro"><?php if (isset($livroSelecionado)) {
-                                                                                                                    echo $livroSelecionado['descricao_livro'];
-                                                                                                                } ?>
-                                                                                                                    
-                                                                                                               </textarea>
+                <textarea name="descricao" id="descricao" cols="64" rows="4" placeholder="Descrição do livro"><?php if (isset($livroSelecionado)) {echo $livroSelecionado['descricao_livro'];} ?></textarea>                                                                                           
                 <input type="text" name="autor" id="autor" placeholder="Nome do Autor" value="<?php if (isset($livroSelecionado)) {
                                                                                                     echo $livroSelecionado['autor_livro'];
                                                                                                 } ?>">
@@ -141,6 +155,7 @@ if (isset($_POST['titulo']) && !empty($_POST['titulo'])) {
                     <input type="file" name="livroCapa" id="livroCapa" placeholder="Selecione a capa do livro">
                 </fieldset>
                 <input type="submit" value="Atualizar">
+                <button class="btn-apagar" type="submit" name="btn-apagar" value="deletar">Apagar Livro</button>
             </form>
         </section>
 

@@ -57,6 +57,7 @@ main{
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 
 }
 #buscar form button img {
@@ -84,7 +85,7 @@ main{
     padding: 25px;
 }
 .erros{
-    height: 25px;
+    min-height: 25px;
     width: 100%;
     display: block;
     color: #d00;
@@ -102,13 +103,14 @@ main{
 #form-atualizar form select,option{
     width: 100%;
     margin: 10px 0px;
+    cursor: pointer;
 
     
 }
 #form-atualizar form input[type='text']{
     display: block;
     width: 100%;
-    height: 40px;
+    height: 30px;
     margin: 10px 0px;
     padding: 5px;
 
@@ -123,6 +125,7 @@ main{
     display: block;
     width: 100%;
     margin-top: 2px;
+    cursor: pointer;
    
 
 }
@@ -131,8 +134,34 @@ main{
     width: 100%;
     margin-top: 20px;
     padding: 5px;
-   
+    border: 1px solid rgba(0, 0, 0, .6);
+    outline: none;
+    font-weight: bold;
+
 }
+#form-atualizar form input[type='submit']:hover{
+    background: linear-gradient(to bottom,rgba(160, 233, 112, 0.863), rgba(75, 132, 22, 0.739));
+    color: #fff;
+    cursor: pointer;
+}
+
+#form-atualizar form button.btn-apagar{
+    padding: 10px 30px;
+    float: right;
+    margin-top: 25px;
+    background: rgb(211, 67, 67);
+    border: 0px;
+    outline: none;
+    color: #fff;
+    text-transform: uppercase;
+
+}
+#form-atualizar form button.btn-apagar:hover{
+    background: rgb(154, 29, 29);
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+
 #form-atualizar form fieldset{
     padding: 15px;
     margin: 20px 0px;
