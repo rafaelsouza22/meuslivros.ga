@@ -37,7 +37,7 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
     <?php require_once("./templetes/header.php"); ?>
     <main>
         <section>
-            <form action="" method="post">
+            <form action="./login.php" method="post">
                 <h2>LOGAR</h2>
                 <p class='msg'><?php echo (isset($res)) ? $res : '';  ?></p>
                 <input type="email" name="email" id="email" required placeholder="Usuario">
