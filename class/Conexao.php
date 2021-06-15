@@ -1,16 +1,22 @@
 <?php
 
-abstract class Conexao{
+ class Conexao{
     
     private const HOST = "127.0.0.1:3306";
     private const DBNAME = "meuslivros";
     private const USER = "root";
     private const PASS = "";
     protected $pdo;
-    protected function conexao()
+    public function conexao()
     {
         try{
-            $this->pdo = new PDO('mysql:host='.self::HOST.';dbname='.self::DBNAME ,self::USER, self::PASS);
+            $this->pdo = new PDO('mysql:host=127.0.0.1:3306;dbname=meuslivros','root', '');
+            //$this->pdo = new PDO('mysql:host='.self::HOST.';dbname='.self::DBNAME ,self::USER, self::PASS);
+            // if($this->pdo){
+            //     echo "ok";
+            // }else{
+            //     echo "ERRO";
+            // }
             return $this->pdo;
             
 
@@ -21,5 +27,7 @@ abstract class Conexao{
         }
     }
 }
+// $con = new Conexao();
+// var_dump($con->conexao());
 
    

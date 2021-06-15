@@ -3,7 +3,6 @@ session_start();
 require_once("./class/SelecionarLivros.php");
 $lista = new SelecionarLivros();
 
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -40,12 +39,6 @@ $lista = new SelecionarLivros();
                 } ?>
             </ul>
         </section>
-        <!-- <aside>
-            <h4>Categorias</h4>
-            <p><a href="">Tecnologias</a></p>
-            <p><a href="">Finanças</a></p>
-            <p><a href="">Apostilas</a></p>
-        </aside> -->
     </main>
     <?php require_once("./templetes/footer.php"); ?>
 </body>
