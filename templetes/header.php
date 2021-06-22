@@ -1,8 +1,8 @@
 <header>
     <nav>
-        <h1><a href="./index.php">MeusLivros</a></h1>
+        <h1><a href="index.php">MeusLivros</a></h1>
         <div id="menu">
-            <form action="./buscar.php" method="get" id="menu-form">
+            <form action="buscar.php" method="get" id="menu-form">
                 <input type="search" name="buscar" id="buscar" placeholder="Buscar">
                 <button type="submit"><img src="./img/lupa.png" alt=""></button>
             </form>

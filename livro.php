@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once("./class/SelecionarLivroPorId.php");
+require_once("class/SelecionarLivroPorId.php");
 $selecionar = new SelecionarLivroPorId();
 $idLivro = addslashes($_GET['id']);
 $livro = $selecionar->selecionarLivroPorId($idLivro);
@@ -32,7 +32,7 @@ $livro = $selecionar->selecionarLivroPorId($idLivro);
                     <p>Autor: <?php echo $livro['autor_livro']; ?></p>
                     <p>Categoria: <?php echo $livro['categoria_livro']; ?></p>
                     <p>Postado em <?php echo $livro['data_postagem_livro']; ?></p>
-                    <p><a href="./arquivos/livros/<?php echo $livro['url_pdf_livro'] ?>">Baixar Livro</a></p>
+                    <p><a target="_blank" href="./arquivos/livros/<?php echo $livro['url_pdf_livro'] ?>">Baixar Livro</a></p>
                     <p></p>
                    
                 </div>

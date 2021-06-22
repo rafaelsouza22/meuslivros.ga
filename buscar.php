@@ -1,9 +1,9 @@
 <?php
 if(!(isset($_GET['buscar']) && !empty($_GET['buscar']))){
-    header('location: index.php');
+    // header('location: index.php');
 }
 session_start();
-require_once("./class/BuscarLivro.php");
+require_once("class/BuscarLivro.php");
 $res = new BuscarLivro();
 
 $buscar = addslashes($_GET['buscar']);
@@ -23,13 +23,13 @@ $livros = $res->buscarLivro($buscar);
 </head>
 
 <body>
-    <?php require_once("./templetes/header.php"); ?>
+    <?php require_once("templetes/header.php"); ?>
     <main>
         <section>
             <ul>
                 <?php
                 if (empty($livros)) {
-                    echo "Nenhum Livro Achado com o Nome: $b ";
+                    echo "Nenhum Livro Achado com o Nome: $buscar ";
                 } else {
                     for ($i=0; $i < count($livros) ; $i++) { 
                            foreach ($livros[$i] as $value) {
@@ -46,14 +46,8 @@ $livros = $res->buscarLivro($buscar);
                 } ?>
             </ul>
         </section>
-        <!-- <aside>
-            <h4>Categorias</h4>
-            <p><a href="">Tecnologias</a></p>
-            <p><a href="">Finanças</a></p>
-            <p><a href="">Apostilas</a></p>
-        </aside> -->
     </main>
-    <?php require_once("./templetes/footer.php"); ?>
+    <?php require_once("templetes/footer.php"); ?>
 </body>
 
 </html>

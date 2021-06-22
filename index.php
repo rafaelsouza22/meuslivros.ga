@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once("./class/SelecionarLivros.php");
+require_once("class/SelecionarLivros.php");
 $lista = new SelecionarLivros();
 
 ?>
@@ -17,7 +17,7 @@ $lista = new SelecionarLivros();
 </head>
 
 <body>
-    <?php require_once("./templetes/header.php"); ?>
+    <?php require_once("templetes/header.php"); ?>
     <main>
         <section>
             <ul>
@@ -40,7 +40,7 @@ $lista = new SelecionarLivros();
             </ul>
         </section>
     </main>
-    <?php require_once("./templetes/footer.php"); ?>
+    <?php require_once("templetes/footer.php"); ?>
 </body>
 
-</html>
+</html> 

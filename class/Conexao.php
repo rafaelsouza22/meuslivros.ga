@@ -1,11 +1,6 @@
 <?php
 
 abstract class Conexao{
-    
-    private const HOST = "127.0.0.1:3306";
-    private const DBNAME = "meuslivros";
-    private const USER = "root";
-    private const PASS = "";
     protected $pdo;
     protected function conexao()
     {
