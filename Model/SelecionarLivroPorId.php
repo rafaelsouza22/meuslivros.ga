@@ -1,9 +1,9 @@
 <?php
 require_once("Conexao.php");
 class SelecionarLivroPorId extends Conexao{
-    public function selecionarLivroPorId($id)
+    public function selecionarLivro($id)
     {   
-        $pdo = parent::conexao();
+        $pdo = parent::connect();
         $idLivro = addslashes($id);
         $sql = "SELECT * FROM livros WHERE id_livro = :id";
         $res = $pdo->prepare($sql);

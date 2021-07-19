@@ -3,9 +3,9 @@ require_once("Conexao.php");
 
 class SelecionarLivros extends Conexao{
 
-    public function selecionarLivros()
+    public function listarLivros()
     {   
-        $pdo = parent::conexao();
+        $pdo = parent::connect();
         $sql = "SELECT * FROM livros limit 12";
         $res = $pdo->prepare($sql);
         $res->execute();

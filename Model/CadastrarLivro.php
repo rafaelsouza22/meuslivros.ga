@@ -4,18 +4,18 @@ require_once("Conexao.php");
 class CadastrarLivro extends Conexao
 {
 
-    public function cadastrarLivro($livro)
+    public function cadastrar($livro)
     {
-        $pdo = parent::conexao();
+        $pdo = parent::connect();
         $erros = array();
         //$urlPdf = $urlCapa = '';
         if (!empty($livro['livroPdf']['name']) && !empty($livro['livroCapa']['name'])) {
             $nomeLivro = explode('.', $livro['livroPdf']['name']);
             $nomeCapa = explode('.', $livro['livroCapa']['name']);
             if (($nomeLivro[sizeof($nomeLivro) - 1] == 'pdf') && ($nomeCapa[sizeof($nomeCapa) - 1] == 'jpg')) {
-                $urlPdf = sha1($nomeLivro[0]) . rand(1000, 9999999) . '.' . $nomeLivro[sizeof($nomeLivro) - 1];
+                $urlPdf = md5($nomeLivro[0]) . rand(10000, 99999999) . '.' . $nomeLivro[sizeof($nomeLivro) - 1];
                 move_uploaded_file($livro['livroPdf']['tmp_name'], "./arquivos/livros/$urlPdf");
-                $urlCapa = sha1($nomeCapa[0]) . rand(1000, 9999999) . '.' . $nomeCapa[sizeof($nomeCapa) - 1];
+                $urlCapa = md5($nomeCapa[0]) . rand(1000, 9999999) . '.' . $nomeCapa[sizeof($nomeCapa) - 1];
                 move_uploaded_file($livro['livroCapa']['tmp_name'], "./arquivos/capas/$urlCapa");
             } else {
                 $erros = 'Você não pode fazer upload deste tipo de arquivo';

@@ -1,9 +1,9 @@
 <?php
 session_start();
-require_once("class/SelecionarLivroPorId.php");
+require_once("./Model/SelecionarLivroPorId.php");
 $selecionar = new SelecionarLivroPorId();
 $idLivro = addslashes($_GET['id']);
-$livro = $selecionar->selecionarLivroPorId($idLivro);
+$livro = $selecionar->selecionarLivro($idLivro);
 
 ?>
 <!DOCTYPE html>

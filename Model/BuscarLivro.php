@@ -3,12 +3,12 @@
 require_once("Conexao.php");
 class BuscarLivro extends Conexao{
 
-    public function buscarLivro($texto){
+    public function buscar($texto){
         $textoLimpo = filter_var($texto , FILTER_SANITIZE_STRING);
         $busca = "%$textoLimpo%";
         $dados = array();
         $sql = "SELECT * FROM livros WHERE titulo_livro like :b ";
-        $pdo = parent::conexao();
+        $pdo = parent::connect();
         $con = $pdo->prepare($sql);
         $con->bindParam(":b", $busca);
         $con->execute();

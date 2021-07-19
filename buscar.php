@@ -3,11 +3,11 @@ if(!(isset($_GET['buscar']) && !empty($_GET['buscar']))){
     // header('location: index.php');
 }
 session_start();
-require_once("class/BuscarLivro.php");
+require_once("./Model/BuscarLivro.php");
 $res = new BuscarLivro();
 
 $buscar = addslashes($_GET['buscar']);
-$livros = $res->buscarLivro($buscar);
+$livros = $res->buscar($buscar);
 
 ?>
 <!DOCTYPE html>

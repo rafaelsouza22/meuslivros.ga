@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once("class/SelecionarLivros.php");
+require_once('./Model/SelecionarLivros.php');
 $lista = new SelecionarLivros();
 
 ?>
@@ -22,7 +22,7 @@ $lista = new SelecionarLivros();
         <section>
             <ul>
                 <?php
-                $livros = $lista->selecionarLivros();
+                $livros = $lista->listarLivros();
                 if (empty($livros)) {
                     echo "Ainda não há livros cadastrados";
                 } else {

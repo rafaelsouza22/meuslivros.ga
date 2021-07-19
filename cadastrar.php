@@ -1,38 +1,5 @@
 <?php
-session_start();
-if(!(isset($_SESSION['id_usuario']) && !empty($_SESSION['id_usuario'])  && isset($_SESSION['email_usuario']) && !empty($_SESSION['email_usuario']))){
-    header('Location: login.php');
-}
-
-require_once("./class/CadastrarLivro.php");
-$cadastrar = new CadastrarLivro();
-if (isset($_POST['titulo'])) {
-    if (
-        isset($_POST['titulo']) && !empty($_POST['titulo']) &&
-        isset($_POST['descricao']) && !empty($_POST['descricao']) &&
-        isset($_POST['autor']) && !empty($_POST['autor']) &&
-        isset($_POST['categoria']) && !empty($_POST['categoria']) &&
-        isset($_FILES['livroPdf']['name']) && !empty($_FILES['livroPdf']['name']) &&
-        isset($_FILES['livroCapa']['name']) && !empty($_FILES['livroCapa']['name'])
-    ) {
-        $titulo = addslashes($_POST['titulo']);
-        $descricao = addslashes($_POST['descricao']);
-        $autor = addslashes($_POST['autor']);
-        $categoria = addslashes($_POST['categoria']);
-        $livroPdf = $_FILES['livroPdf'];
-        $livroCapa = $_FILES['livroCapa'];
-
-        $livro = array('titulo' => $titulo, 'descricao' => $descricao, 'autor' => $autor, 'categoria' => $categoria, 'livroPdf' => $livroPdf, 'livroCapa' => $livroCapa);
-
-        $a = $cadastrar->cadastrarLivro($livro);
-        if ($a) {
-            echo "<script> alert('Cadastrado com SUCESSO!')</script>";
-        }
-    } else {
-        echo "Preencha todos os campos!";
-    }
-}
-
+    require_once('./Controller/ControllerCadastrar.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -61,13 +28,14 @@ if (isset($_POST['titulo'])) {
                     <option value="Aventura">Aventura</option>
                     <option value="Autoajuda">Auto ajuda</option>
                     <option value="Filosofia">Filosofia</option>
+                    <option value="Fisica">Fisica</option>
                 </select>
                 <fieldset>
                     <legend><label for="livroPdf">Selecionar um Livro *Somente .PDF</label></legend>
                     <input type="file" name="livroPdf" id="livroPdf" placeholder="Selecione um Livro">
                 </fieldset>
                 <fieldset>
-                    <legend><label for="livroCapa">Selecione uma Capa *Somente .JPG ou .PNG</label></legend>
+                    <legend><label for="livroCapa">Selecione uma Capa *Somente .JPG</label></legend>
                     <input type="file" name="livroCapa" id="livroCapa" placeholder="Selecione a capa do livro">
                 </fieldset>
                 <input type="submit" value="Cadastrar">

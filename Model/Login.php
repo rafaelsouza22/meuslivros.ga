@@ -1,7 +1,7 @@
 <?php
 
 require_once("Conexao.php");
-class Logar extends Conexao
+class Login extends Conexao
 {
 
     public function logar($usuario)
@@ -10,7 +10,7 @@ class Logar extends Conexao
         $senha = addslashes($usuario['senha']);
         // VERIFICANDO SE EXISTE O EMAIL NO BANCO DE DADOS
         $sql = "SELECT id_usuario, nome_usuario, email_usuario, senha_usuario FROM usuarios WHERE email_usuario = :email ";
-        $pdo = parent::conexao();
+        $pdo = parent::connect();
         $con = $pdo->prepare($sql);
         $con->bindValue(':email', $email);
         $con->execute();

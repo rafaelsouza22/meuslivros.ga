@@ -1,6 +1,0 @@
-PLANEJAMENTO
-
- - apagar os arquivos pdf e jpg da pasta com os nomes do DB
- - inserir os novos arquivos na pasta e iserir os novos nomes no DB
- - 
-

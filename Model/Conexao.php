@@ -2,7 +2,7 @@
 
 abstract class Conexao{
     protected $pdo;
-    protected function conexao()
+    protected function connect()
     {
         try{
             $this->pdo = new PDO('mysql:host=127.0.0.1:3306;dbname=meuslivros','root', '');

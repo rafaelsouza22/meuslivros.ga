@@ -1,7 +1,6 @@
-
 <?php
 session_start();
-require_once("./class/Login.php");
+require_once("./Model/Login.php");
 $res;
 if (isset($_POST['email']) && isset($_POST['senha'])) {
     if (!empty($_POST['email']) && !empty($_POST['senha'])) {
@@ -13,10 +12,9 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
 
         // chamando o metodo logar
         $usuario = array('email'=>$email , 'senha'=> $senha);
-        $logar = new Logar();
+        $logar = new Login();
         $res = $logar->logar($usuario);
     }
-
 }
 ?>
 
