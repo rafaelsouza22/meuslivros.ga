@@ -21,9 +21,9 @@ class AtualizarLivro extends Conexao
                 $nomeLivro = explode('.', $livroPdf['name']);
                 $nomeCapa = explode('.', $livroCapa['name']);
                 if (($nomeLivro[sizeof($nomeLivro) - 1] == 'pdf') && ($nomeCapa[sizeof($nomeCapa) - 1] == 'jpg')) { 
-                    $urlPdf = md5($nomeLivro[0]) . rand(10000, 999999999) . '.' . $nomeLivro[sizeof($nomeLivro) - 1];
+                    $urlPdf = md5($nomeLivro[0]) . rand(10000, 99999999999) . '.' . $nomeLivro[sizeof($nomeLivro) - 1];
                     move_uploaded_file($livroPdf['tmp_name'], "./arquivos/livros/$urlPdf");
-                    $urlCapa = md5($nomeCapa[0]) . rand(10000, 999999999) . '.' . $nomeCapa[sizeof($nomeCapa) - 1];
+                    $urlCapa = md5($nomeCapa[0]) . rand(10000, 99999999999) . '.' . $nomeCapa[sizeof($nomeCapa) - 1];
                     move_uploaded_file($livroCapa['tmp_name'], "./arquivos/capas/$urlCapa");
                      // APAGANDO O LIVRO E CAPA
                      if (!empty($id)) {
