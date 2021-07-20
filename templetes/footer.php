@@ -1,3 +1,3 @@
 <footer>
-    <p>&COPY; MeusLivro by <a href="https://rafaelsouza.ga" target="_blank">Rafael Souza</a></p>
+    <p>&COPY; MeusLivro by <a href="https://rafaelsouza.ml" target="_blank">Rafael Souza</a></p>
 </footer>

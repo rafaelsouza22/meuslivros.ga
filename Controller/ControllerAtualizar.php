@@ -39,9 +39,8 @@ if (isset($_POST['titulo']) && !empty($_POST['titulo'])) {
         isset($_POST['titulo']) && !empty($_POST['titulo']) &&
         isset($_POST['descricao']) && !empty($_POST['descricao']) &&
         isset($_POST['autor']) && !empty($_POST['autor']) &&
-        isset($_POST['categoria']) && !empty($_POST['categoria']) &&
-        isset($_FILES['livroPdf']['name']) && !empty($_FILES['livroPdf']['name']) &&
-        isset($_FILES['livroCapa']['name']) && !empty($_FILES['livroCapa']['name'])
+        isset($_POST['categoria']) && !empty($_POST['categoria'])
+        
     ) {
         $id = addslashes($_POST['id_livro']);
         $titulo = addslashes($_POST['titulo']);
@@ -54,15 +53,16 @@ if (isset($_POST['titulo']) && !empty($_POST['titulo'])) {
         $a = $atualizar->atualizar($livro);
         $id_livro = addslashes($id);
         $livroSelecionado = $selecionar->selecionarLivro($id_livro);
+        // var_dump($a);
         switch ($a) {
             case 1:
                 $erros = "Você não pode fazer upload deste tipo de arquivo/livro";
                 break;
             case 2:
-                $erros = "Escolha um LIVRO e UMA CAPA";
+                $erros = "Sucesso ao atualizar ";
                 break;
             case 3:
-                $erros = "Sucesso ao atualizar ";
+                $erros = "Escolha um LIVRO e UMA CAPA";
                 break;
             case 4:
                 $erros = "ERRO ao atualizar ";
@@ -77,9 +77,9 @@ if (isset($_POST['titulo']) && !empty($_POST['titulo'])) {
                 $erros = 'ERRO no switch!';
         }
     } else {
-        $erros = "Preencha todos os campos!";
+        $erros = "Preencha todos os campos!1";
     }
-}
+} 
 
 // APAGAR LIVRO
 if (isset($_POST['btn-apagar']) && !empty($_POST['btn-apagar']) )

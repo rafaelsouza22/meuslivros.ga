@@ -42,11 +42,11 @@
                     <?php if (isset($livroSelecionado)) {
                         echo "<option value='{$livroSelecionado['categoria_livro']}' > {$livroSelecionado['categoria_livro']} </option> ";
                     } ?>
-                    <option value="tecnologia">Tecnologia</option>
-                    <option value="finanças">Finanças</option>
-                    <option value="aventura">Aventura</option>
-                    <option value="autoajuda">Auto ajuda</option>
-                    <option value="filosofia">Filosofia</option>
+                    <option value="Tecnologia">Tecnologia</option>
+                    <option value="Finanças">Finanças</option>
+                    <option value="Aventura">Aventura</option>
+                    <option value="Autoajuda">Auto ajuda</option>
+                    <option value="Filosofia">Filosofia</option>
                 </select>
                 <fieldset>
                     <legend><label for="livroPdf">Selecionar um Livro *Somente .PDF</label></legend>
