@@ -32,9 +32,10 @@ if ((isset($_GET['buscar']) && !empty($_GET['buscar']))) {
 }
 
 
-// para atualizar o livro
-if (isset($_POST['titulo']) && !empty($_POST['titulo'])) {
+// para atualizar o livro 
+if (isset($_POST['titulo']) || !empty($_POST['titulo'])) {
     if (
+        isset($_POST['titulo']) && !empty($_POST['titulo']) &&
         isset($_POST['id_livro']) && !empty($_POST['id_livro']) &&
         isset($_POST['titulo']) && !empty($_POST['titulo']) &&
         isset($_POST['descricao']) && !empty($_POST['descricao']) &&
@@ -77,7 +78,7 @@ if (isset($_POST['titulo']) && !empty($_POST['titulo'])) {
                 $erros = 'ERRO no switch!';
         }
     } else {
-        $erros = "Preencha todos os campos!1";
+        $erros = "Preencha todos os campos!";
     }
 } 
 
