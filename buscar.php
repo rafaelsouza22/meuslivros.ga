@@ -4,10 +4,11 @@ if(!(isset($_GET['buscar']) && !empty($_GET['buscar']))){
 }
 session_start();
 require_once("./Model/BuscarLivro.php");
-$res = new BuscarLivro();
-
-$buscar = addslashes($_GET['buscar']);
-$livros = $res->buscar($buscar);
+$buscarLivros = new BuscarLivro();
+if(isset($_GET['buscar']) && !empty($_GET['buscar']) ){
+    $_SESSION['textoBuscado'] = addslashes($_GET['buscar']);
+}
+$livros = $buscarLivros->buscar($_SESSION['textoBuscado']);
 
 ?>
 <!DOCTYPE html>
@@ -25,7 +26,7 @@ $livros = $res->buscar($buscar);
 <body>
     <?php require_once("templetes/header.php"); ?>
     <main>
-        <section>
+        <section class="livros-listados">
             <ul>
                 <?php
                 if (empty($livros)) {
@@ -45,6 +46,17 @@ $livros = $res->buscar($buscar);
                     }    
                 } ?>
             </ul>
+        </section>
+        <section class="paginacao">
+            <?php
+            $numPaginas =  $buscarLivros->numPaginas;
+            $pagina = $buscarLivros->pagina;
+            echo "<p> <a href='buscar.php?pagina=1'> Primeira </a> ";
+            for ($i = 1; $i <= $numPaginas; $i++) {
+                echo ($i == $pagina) ? "<span>$i</span>" : "<a href='buscar.php?pagina=$i'> $i </a>";
+            }
+            echo "<a href='buscar.php?pagina=$numPaginas'> Última </a> </p>";
+            ?>
         </section>
     </main>
     <?php require_once("templetes/footer.php"); ?>

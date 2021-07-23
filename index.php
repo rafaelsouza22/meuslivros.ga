@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once('./Model/SelecionarLivros.php');
-$lista = new SelecionarLivros();
+$livros = new SelecionarLivros();
 
 ?>
 <!DOCTYPE html>
@@ -19,14 +19,14 @@ $lista = new SelecionarLivros();
 <body>
     <?php require_once("templetes/header.php"); ?>
     <main>
-        <section>
+        <section class="livros-listados">
             <ul>
                 <?php
-                $livros = $lista->listarLivros();
-                if (empty($livros)) {
+                $lista = $livros->listarLivros();
+                if (empty($lista)) {
                     echo "Ainda não há livros cadastrados";
                 } else {
-                    foreach ($livros as $value) {
+                    foreach ($lista as $value) {
                         echo
                         "<li>
                             <a href='livro.php?id={$value['id_livro']}'>
@@ -39,8 +39,19 @@ $lista = new SelecionarLivros();
                 } ?>
             </ul>
         </section>
+        <section class="paginacao">
+            <?php
+            $numPaginas =  $livros->numPaginas;
+            $pagina = $livros->pagina;
+            echo "<p><a href='index.php?pagina=1'>Primeira</a> ";
+            for ($i = 1; $i <= $numPaginas; $i++) {
+                echo ($i == $pagina) ? "<span>$i</span>" : "<a href='index.php?pagina=$i'>$i</a>";
+            }
+            echo "<a href='index.php?pagina=$numPaginas'>Última</a></p>";
+            ?>
+        </section>
     </main>
     <?php require_once("templetes/footer.php"); ?>
 </body>
 
-</html> 
+</html>

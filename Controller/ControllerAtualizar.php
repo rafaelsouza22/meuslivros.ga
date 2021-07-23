@@ -3,14 +3,13 @@ session_start();
 if (!(isset($_SESSION['id_usuario']) && !empty($_SESSION['id_usuario'])  && isset($_SESSION['email_usuario']) && !empty($_SESSION['email_usuario']))) {
     header('Location: login.php');
 }
-require_once("./Model/Conexao.php");
 require_once("./Model/BuscarLivro.php");
 require_once("./Model/AtualizarLivro.php");
 require_once("./Model/SelecionarLivroPorId.php");
 require_once("./Model/DeletarLivro.php");
 
 $atualizar = new atualizarLivro();
-$buscar = new BuscarLivro();
+$buscarLivros = new BuscarLivro();
 $selecionar = new SelecionarLivroPorId();
 $deletar = new DeletarLivro();
 $texto = '';
@@ -24,16 +23,16 @@ if ((isset($_GET['id_livro']) && !empty($_GET['id_livro']))) {
     $livroSelecionado = $selecionar->selecionarLivro($id_livro);
 }
 
+
 // BUSCAR LIVROS
 if ((isset($_GET['buscar']) && !empty($_GET['buscar']))) {
-    $texto = addslashes($_GET['buscar']);
-    $_SESSION['buscar'] = $texto;
-    $livrosBuscados = $buscar->buscar($texto);
+    $_SESSION['textoBuscado'] = addslashes($_GET['buscar']);;
+    $livrosBuscados = $buscarLivros->buscar($_SESSION['textoBuscado']);
 }
 
 
-// para atualizar o livro 
-if (isset($_POST['titulo']) || !empty($_POST['titulo'])) {
+// para atualizar o livro
+if (isset($_POST['titulo']) && !empty($_POST['titulo'])) {
     if (
         isset($_POST['titulo']) && !empty($_POST['titulo']) &&
         isset($_POST['id_livro']) && !empty($_POST['id_livro']) &&
@@ -51,11 +50,11 @@ if (isset($_POST['titulo']) || !empty($_POST['titulo'])) {
         $livroPdf = $_FILES['livroPdf'];
         $livroCapa = $_FILES['livroCapa'];
         $livro = array('id_livro' => $id, 'titulo' => $titulo, 'descricao' => $descricao, 'autor' => $autor, 'categoria' => $categoria, 'livro_pdf' => $livroPdf, 'livro_capa' => $livroCapa);
-        $a = $atualizar->atualizar($livro);
+        $res = $atualizar->atualizar($livro);
         $id_livro = addslashes($id);
         $livroSelecionado = $selecionar->selecionarLivro($id_livro);
-        // var_dump($a);
-        switch ($a) {
+        
+        switch ($res) {
             case 1:
                 $erros = "Você não pode fazer upload deste tipo de arquivo/livro";
                 break;

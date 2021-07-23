@@ -23,27 +23,33 @@ $livro = $selecionar->selecionarLivro($idLivro);
 <body>
     <?php require_once("./templetes/header.php"); ?>
     <main>
-        <section>
+        <section class="livro">
             <article>
-                <img src="./arquivos/capas/<?php echo $livro['url_capa_livro'] ?>" alt="<?php echo $livro['titulo_livro']; ?>">
-                <div id="descicao">
-                    <h1> <?php echo $livro['titulo_livro']; ?></h1>
-                    <p>Descrição: <?php echo $livro['descricao_livro']; ?> </p>
-                    <p>Autor: <?php echo $livro['autor_livro']; ?></p>
-                    <p>Categoria: <?php echo $livro['categoria_livro']; ?></p>
-                    <p>Postado em <?php echo $livro['data_postagem_livro']; ?></p>
-                    <p><a target="_blank" href="./arquivos/livros/<?php echo $livro['url_pdf_livro'] ?>">Baixar Livro</a></p>
-                    <p></p>
-                   
+                <figure>
+                    <img src="./arquivos/capas/<?php echo $livro['url_capa_livro'] ?>" alt="<?php echo $livro['titulo_livro']; ?>">
+                </figure>
+
+                <div id="descicao" >
+                    <h1><?php echo $livro['titulo_livro']; ?></h1>
+                    <p><strong>Descrição:</strong>  <?php echo $livro['descricao_livro']; ?> </p>
+                    <p><strong>Autor:</strong> <?php echo $livro['autor_livro']; ?></p>
+                    <p><strong>Categoria:</strong> <?php echo $livro['categoria_livro']; ?></p>
+                    <p class="postegem">Postado em <?php echo $livro['data_postagem_livro']; ?></p>
+
                 </div>
-                <?php // echo "<pre>"; var_dump($livro); echo "</pre>"; ?>
-
             </article>
-
-            <object data="./arquivos/livros/<?php echo $livro['url_pdf_livro'] ?>" type="" width="500" height="600" title="ola mundo"></object>
+            <div class="botoes clear">
+                <p>
+                    <a target="_new" href="./arquivos/livros/<?php echo $livro['url_pdf_livro'] ?>">Ler Livro</a>
+                    <a target="new " href="./arquivos/livros/<?php echo $livro['url_pdf_livro'] ?>">Baixar Livro</a>
+                </p>
+            </div>
+            
+            
         </section>
     </main>
     <?php require_once("./templetes/footer.php"); ?>
 </body>
-
+<!-- <object data="./arquivos/livros/<?php //echo $livro['url_pdf_livro'] 
+                                                    ?>" type="" width="500" height="600" title="ola mundo"></object> -->
 </html>

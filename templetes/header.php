@@ -15,7 +15,7 @@
             </ul>
 
         </div>
-        <button onclick="menu()" id="btn-menu">MENU</button>
+        <button onclick="menu()" id="btn-menu"><img src="../img/menu.png" alt="MENU"></button>
     </nav>
 </header>
 <script>

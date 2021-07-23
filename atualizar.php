@@ -1,5 +1,5 @@
 <?php
-    require_once('./Controller/ControllerAtualizar.php');
+require_once('./Controller/ControllerAtualizar.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -34,7 +34,9 @@
                                                                                                     } ?>">
 
 
-                <textarea name="descricao" id="descricao" cols="64" rows="4" placeholder="Descrição do livro"><?php if (isset($livroSelecionado)) {echo $livroSelecionado['descricao_livro'];} ?></textarea>                                                                                           
+                <textarea name="descricao" id="descricao" cols="64" rows="4" placeholder="Descrição do livro"><?php if (isset($livroSelecionado)) {
+                                                                                                                    echo $livroSelecionado['descricao_livro'];
+                                                                                                                } ?></textarea>
                 <input type="text" name="autor" id="autor" placeholder="Nome do Autor" value="<?php if (isset($livroSelecionado)) {
                                                                                                     echo $livroSelecionado['autor_livro'];
                                                                                                 } ?>">
@@ -59,7 +61,12 @@
                     <input type="file" name="livroCapa" id="livroCapa" placeholder="Selecione a capa do livro">
                 </fieldset>
                 <input type="submit" value="Atualizar">
-                <button class="btn-apagar" type="submit" name="btn-apagar" value="deletar">Apagar Livro</button>
+                <?php 
+                    if (isset($livroSelecionado['id_livro'])) {
+                        echo "<button class='btn-apagar' type='submit' name='btn-apagar' value='deletar'>Apagar Livro</button>";
+                    } 
+                ?>
+                <!-- <button class="btn-apagar" type="submit" name="btn-apagar" value="deletar">Apagar Livro</button> -->
             </form>
         </section>
 
@@ -95,6 +102,17 @@
                 }
                 ?>
             </ul>
+        </section>
+        <section class="paginacao">
+            <?php
+            $numPaginas =  $buscarLivros->numPaginas ? $buscarLivros->numPaginas : 1;
+            $pagina = $buscarLivros->pagina;
+            echo "<p> <a href='atualizar.php?pagina=1&buscar={$_SESSION['textoBuscado']}'>Primeira</a>";
+            for($i = 1; $i <= $numPaginas; $i++) {
+                echo ($i == $pagina) ? "<span>$i</span>" : "<a href='atualizar.php?pagina=$i&buscar={$_SESSION['textoBuscado']}'>$i</a>";
+            }
+            echo "<a href='atualizar.php?pagina=$numPaginas&buscar={$_SESSION['textoBuscado']}'>Última</a></p>";
+            ?>
         </section>
 
 

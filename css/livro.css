@@ -1,31 +1,146 @@
 main{
 
 }
-main section{
-    width: 80vw;
+.livro{
+    max-width: 80vw;
+    min-height: 85vh;
     margin: auto;
+    background: rgb(243, 242, 242);
+    position: relative;
+    /* display: flex; */
 }
 
-main section object{
-    width: 100%;
-    height: 800px;
-
-}
-main section article{
-    width: 100%;
-    height: 500px;
+.livro article{
+    max-width: 100%;
+    height: 500px; 
     /* border: 1px solid #000; */
+    /* display: flex; */
 }
-main section article img{
+.livro article figure img{
     height: 300px;
     width: 250px;
     margin: 20px;
     float: left;
+    padding: 5px;
+    background: rgb(255, 255, 255);
+    box-shadow: 1px 1px 6px #000;
+    transition: .8s;
 }
-main section article #descicao{
-    height: calc(100% - 300px) ;
-    width:calc(100% - 300px);
-    margin-top: 20px;
+.livro article figure img:hover{
+    transform: translate(20px , 20px) scale(1.2);
+}
+
+.livro article #descicao{
+    min-height: calc(100% - 300px) ;
+    max-width:calc(100% - 350px);
+    margin: 20px;
     /* border: 1px solid #f00; */
+    display: block;
     float: right;
+}
+.livro article #descicao p{
+    margin: 20px 0px;
+    line-height: 1.4;
+}
+
+.livro .botoes{
+   width: 100%;
+   height: 60px;
+   text-align: end;
+   margin-right:20px ;
+
+}
+.livro .botoes p{
+    /* border: 1px solid #f00; */
+    margin-right: 60px;
+}
+.livro .botoes p a{
+    padding: 10px 20px;
+    background: rgb(163, 95, 63);
+    font-size: 20px;
+    border-radius: 10px;
+    margin: 10px 20px;
+    text-shadow: 1px 1px 3px #aaa;
+}
+.livro .botoes p a:hover{
+    background: rgb(127, 81, 60);
+    color: #fff;
+}
+
+.clear, .clear::before, .clear::after{
+    clear: both;
+    content: '';
+    display: table;
+}
+
+@media screen and (min-width: 10px) and (max-width: 950px){
+
+    .livro{
+        max-width: 100vw;
+        min-height: 85vh;
+        background: rgb(243, 242, 242);
+        display: block;
+        position: relative;
+ 
+    }
+
+    .livro article{
+        width: 100vw;
+        height: 500px; 
+        border: 1px solid #000;
+        display: block;
+    }
+    .livro article div{
+        width: 100vw;
+        height: 300px;
+        background: sienna;
+        display: block;
+
+    }
+    .livro article figure img{
+        height: 300px;
+        width: 250px;
+        margin: 20px auto;
+        
+        padding: 5px;
+        background: rgb(255, 255, 255);
+        box-shadow: 1px 1px 6px #000;
+        transition: .8s;
+    }
+    .livro article figure img:hover{
+        transform: translate(0px , 0px) scale(1);
+    }
+
+    .livro article #descicao{
+        min-height: calc(100% - 300px) ;
+        max-width:calc(100% - 350px);
+        margin: 20px;
+        border: 1px solid #f00;
+        display: block;
+        
+    }
+    .livro article #descicao p{
+        margin: 20px 0px;
+        line-height: 1.4;
+    }
+
+    .livro .botoes{
+    width: 100%;
+    height: 60px;
+    text-align: end;
+    margin-right:20px ;
+
+    }
+    .livro .botoes p{
+        /* border: 1px solid #f00; */
+        margin-right: 60px;
+    }
+    .livro .botoes p a{
+        padding: 10px 20px;
+        background: rgb(163, 95, 63);
+        font-size: 20px;
+        border-radius: 10px;
+        margin: 10px 20px;
+        text-shadow: 1px 1px 3px #aaa;
+    }
 }

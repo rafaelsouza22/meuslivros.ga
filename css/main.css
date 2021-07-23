@@ -1,56 +1,86 @@
 
-
-
-
 main{
     width: 80vw;
-    height: calc(100vh - 100px) ;
+    min-height: calc(100vh - 140px) ;
     margin: auto;
-    /* background: rgba(86, 204, 106, 0.6); */
+   
 }
-section ul{
+.livros-listados ul{
     width: 80vw;
-    height: 50vh;
-    /* background: rgba(126, 40, 40, 0.6); */
+    min-height: 78vh;
+    /* background: cornflowerblue; */
+    
 }
 
-section ul li {
+.livros-listados ul li {
     width: 230px;
-    height: 380px;
-    /* border: 1px solid #000; */
+    min-height: 380px;
     float: left;
-    margin: 25px 15px ;
+    margin: 25px 20px ;
     text-align: center;
-    /* background: rgba(59, 55, 55, 0.6); */
+    /* background: chocolate; */
+   
 
 }
-section ul li img{
+.livros-listados ul li img{
     width: 230px;
     height: 250px;
     padding: 5px;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, .6);
 }
-section ul li img:hover{
+.livros-listados ul li img:hover{
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 1);
 }
-section ul li h3 {
+.livros-listados ul li h3 {
     display: block;
     color: rgb(0, 0, 0);
     font-size: 20px;
-    padding-top:8px ;
-    height: 95px;
+    padding:8px 0px;
+    min-height: 95px;
+    /* background: cornflowerblue; */
 }
-section ul li h3 a:hover {
-    color: rgb(238, 14, 14);;
+.livros-listados ul li h3 a:hover {
+    color: rgb(163, 18, 18);;
 }
-section ul li p a{
+
+.livros-listados ul li p a{
     font-size: 14px; 
     padding:4px 7px;
     border: 1px solid #555;
     border-radius: 5px;
 }
-section ul li p a:hover{
+.livros-listados ul li p a:hover{
     color: rgb(246, 17, 17);
-
     border: 1px solid rgb(246, 17, 17);
+}
+
+
+/*----- Paginação ----- */
+.paginacao{
+    clear: both;
+    min-height: 40px;
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    color: #000;
+    position: relative;
+    /* bottom: -390px; */
+    /* background: chocolate; */
+}
+.paginacao p{
+    padding: 6px;
+    font-size: 18px;
+}
+.paginacao p a{
+    border: 1px solid rgb(0, 0, 0);
+    padding: 6px;
+    margin: 0 5px;
+}
+.paginacao p span{
+    padding: 6px;
+    margin: 0 5px;
+    text-decoration: underline;
+}
+.paginacao p a:hover{
+    color: #f00;
 }
