@@ -1,25 +1,20 @@
-main{
 
-}
 .livro{
-    max-width: 80vw;
-    min-height: 85vh;
+    width: 80vw;
+    min-height: 86vh;
     margin: auto;
-    background: rgb(243, 242, 242);
-    position: relative;
-    /* display: flex; */
+    padding: 20px;
+    background: rgb(241, 237, 237);
 }
 
 .livro article{
-    max-width: 100%;
-    height: 500px; 
-    /* border: 1px solid #000; */
-    /* display: flex; */
+    width: 100%;
+    display: flex;
+    margin-top: 10px;
 }
 .livro article figure img{
     height: 300px;
-    width: 250px;
-    margin: 20px;
+    width: 240px;
     float: left;
     padding: 5px;
     background: rgb(255, 255, 255);
@@ -27,42 +22,56 @@ main{
     transition: .8s;
 }
 .livro article figure img:hover{
-    transform: translate(20px , 20px) scale(1.2);
+    transform: translate(20px , 10px) scale(1.2);
+
 }
 
 .livro article #descicao{
-    min-height: calc(100% - 300px) ;
-    max-width:calc(100% - 350px);
-    margin: 20px;
-    /* border: 1px solid #f00; */
-    display: block;
-    float: right;
+   padding: 0 20px;
+   margin-left: 15px;
+  
+}
+.livro article #descicao h1{
+    font-size: 26px;
+    font-weight: bold;
+    text-align: center;
 }
 .livro article #descicao p{
-    margin: 20px 0px;
-    line-height: 1.4;
+    display: block;
+    min-width: 100% ;
+    margin: 10px 0px;
+    line-height: 1.5;
+    text-align: justify;
 }
+.livro article #descicao p strong{
+    font-size: 16px;
+    font-weight: bold;
+}
+P.postegem{
+    font-size: 14px;
+    text-align: end !important;
+    padding: 10px;
+}
+
 
 .livro .botoes{
-   width: 100%;
-   height: 60px;
-   text-align: end;
-   margin-right:20px ;
-
+    width: 400px;
+    height: 60px;
+    float: right;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 5px;
 }
-.livro .botoes p{
-    /* border: 1px solid #f00; */
-    margin-right: 60px;
+.livro .botoes a{
+   color: #000;
+   text-decoration: none;
+   padding: 5px 20px;
+   background: chocolate;
+   border-radius: 10px;
+   font-size: 20px;
 }
-.livro .botoes p a{
-    padding: 10px 20px;
-    background: rgb(163, 95, 63);
-    font-size: 20px;
-    border-radius: 10px;
-    margin: 10px 20px;
-    text-shadow: 1px 1px 3px #aaa;
-}
-.livro .botoes p a:hover{
+.livro .botoes a:hover{
     background: rgb(127, 81, 60);
     color: #fff;
 }
@@ -73,74 +82,56 @@ main{
     display: table;
 }
 
-@media screen and (min-width: 10px) and (max-width: 950px){
-
+@media screen and (min-width: 201px) and (max-width: 800px){
     .livro{
-        max-width: 100vw;
-        min-height: 85vh;
-        background: rgb(243, 242, 242);
+        min-width: 100%;
+        min-height: 86vh;
+        margin: 0;
         display: block;
-        position: relative;
- 
     }
 
     .livro article{
-        width: 100vw;
-        height: 500px; 
-        border: 1px solid #000;
+        width: 100%;
         display: block;
+        margin: 10px 0px;
     }
-    .livro article div{
-        width: 100vw;
-        height: 300px;
-        background: sienna;
-        display: block;
-
-    }
-    .livro article figure img{
-        height: 300px;
-        width: 250px;
-        margin: 20px auto;
-        
-        padding: 5px;
-        background: rgb(255, 255, 255);
-        box-shadow: 1px 1px 6px #000;
-        transition: .8s;
+    .livro article figure{
+        display: flex;
+        max-width: 100vw;
+        height: 320px;
+        justify-content: center;
     }
     .livro article figure img:hover{
-        transform: translate(0px , 0px) scale(1);
+        transform: scale(1);
     }
 
     .livro article #descicao{
-        min-height: calc(100% - 300px) ;
-        max-width:calc(100% - 350px);
-        margin: 20px;
-        border: 1px solid #f00;
-        display: block;
-        
+        padding: 0px;
+        margin: 0px;
+    }
+    .livro article #descicao h1{
+        font-size: 26px;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 20px;
+      
     }
     .livro article #descicao p{
-        margin: 20px 0px;
-        line-height: 1.4;
+        display: block;
+        width: 100% ;
+        margin: 10px 0px;
+        line-height: 1.5;
+        text-align: justify;
     }
-
     .livro .botoes{
-    width: 100%;
-    height: 60px;
-    text-align: end;
-    margin-right:20px ;
+        width: 100%;
+        margin: 25px 0;
+    }
+}
 
-    }
-    .livro .botoes p{
-        /* border: 1px solid #f00; */
-        margin-right: 60px;
-    }
-    .livro .botoes p a{
-        padding: 10px 20px;
-        background: rgb(163, 95, 63);
-        font-size: 20px;
-        border-radius: 10px;
-        margin: 10px 20px;
-        text-shadow: 1px 1px 3px #aaa;
+@media screen and (max-width: 1100px){
+    .livro{
+        max-width: 100vw;
+    
     }
 }

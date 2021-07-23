@@ -59,7 +59,7 @@ header nav h1 a:hover{
 
 header nav #menu{
     min-width: 340px;
-    min-height: calc(100vh - 140px ) ;
+    min-height: calc(100vh - 60px ) ;
     padding: 10px;
     display: none;
     text-align: center;
@@ -124,6 +124,14 @@ header nav div #menu-form button img {
     height: 25px;
 
 }
+@media screen and (max-width: 1100px){ 
+    header nav{
+        width: 100%;    
+    }
+}
+
+
+
 
 
 /* RODAPE DO SITE  */
