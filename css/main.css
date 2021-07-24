@@ -3,13 +3,10 @@ main{
     width: 80vw;
     min-height: calc(100vh - 140px) ;
     margin: auto;
-   
 }
 .livros-listados ul{
     width: 80vw;
-    min-height: 78vh;
-    /* background: cornflowerblue; */
-    
+    min-height: 78vh;    
 }
 
 .livros-listados ul li {
@@ -18,9 +15,6 @@ main{
     float: left;
     margin: 25px 20px ;
     text-align: center;
-    /* background: chocolate; */
-   
-
 }
 .livros-listados ul li img{
     width: 230px;
@@ -37,7 +31,6 @@ main{
     font-size: 20px;
     padding:8px 0px;
     min-height: 95px;
-    /* background: cornflowerblue; */
 }
 .livros-listados ul li h3 a:hover {
     color: rgb(163, 18, 18);;
@@ -54,6 +47,14 @@ main{
     border: 1px solid rgb(246, 17, 17);
 }
 
+.msg-livro-achado{
+    padding: 20px;
+}
+.msg-livro-achado strong{
+    /* text-decoration: underline; */
+    font-size: 20px;
+}
+
 
 /*----- Paginação ----- */
 .paginacao{
@@ -64,16 +65,14 @@ main{
     margin-top: 20px;
     color: #000;
     position: relative;
-    /* bottom: -390px; */
-    /* background: chocolate; */
 }
 .paginacao p{
     padding: 6px;
     font-size: 18px;
 }
 .paginacao p a{
-    border: 1px solid rgb(0, 0, 0);
-    padding: 2px 6px;
+    border: 1px solid rgba(0, 0, 0, .5);
+    padding: 3px 6px;
     margin: 0 5px;
 }
 .paginacao p span{

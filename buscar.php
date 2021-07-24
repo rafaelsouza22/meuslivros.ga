@@ -1,10 +1,11 @@
 <?php
 if(!(isset($_GET['buscar']) && !empty($_GET['buscar']))){
-    // header('location: index.php');
+    header('location: index.php');
 }
 session_start();
 require_once("./Model/BuscarLivro.php");
 $buscarLivros = new BuscarLivro();
+$buscar = addslashes($_GET['buscar']);
 if(isset($_GET['buscar']) && !empty($_GET['buscar']) ){
     $_SESSION['textoBuscado'] = addslashes($_GET['buscar']);
 }
@@ -30,8 +31,9 @@ $livros = $buscarLivros->buscar($_SESSION['textoBuscado']);
             <ul>
                 <?php
                 if (empty($livros)) {
-                    echo "Nenhum Livro Achado com o Nome: $buscar ";
+                    echo "<p class='msg-livro-achado'>Nenhum Livro Achado com o Palavra: <strong>$buscar</strong> </p>";
                 } else {
+                    echo "<p class='msg-livro-achado'>Livros Achados com o Palavra: <strong>$buscar</strong> </p>";
                     for ($i=0; $i < count($livros) ; $i++) { 
                            foreach ($livros[$i] as $value) {
                             echo
@@ -51,11 +53,11 @@ $livros = $buscarLivros->buscar($_SESSION['textoBuscado']);
             <?php
             $numPaginas =  $buscarLivros->numPaginas;
             $pagina = $buscarLivros->pagina;
-            echo "<p> <a href='buscar.php?pagina=1'> Primeira </a> ";
+            echo "<p> <a href='buscar.php?pagina=1'>Primeira</a> ";
             for ($i = 1; $i <= $numPaginas; $i++) {
-                echo ($i == $pagina) ? "<span>$i</span>" : "<a href='buscar.php?pagina=$i'> $i </a>";
+                echo ($i == $pagina) ? "<span>$i</span>" : "<a href='buscar.php?pagina=$i'>$i</a>";
             }
-            echo "<a href='buscar.php?pagina=$numPaginas'> Última </a> </p>";
+            echo "<a href='buscar.php?pagina=$numPaginas'>Última</a></p>";
             ?>
         </section>
     </main>

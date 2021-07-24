@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!(isset($_SESSION['id_usuario']) && !empty($_SESSION['id_usuario'])  && isset($_SESSION['email_usuario']) && !empty($_SESSION['email_usuario']))){
+if (!(isset($_SESSION['id_usuario']) && !empty($_SESSION['id_usuario'])  && isset($_SESSION['email_usuario']) && !empty($_SESSION['email_usuario']))) {
     header('Location: login.php');
 }
 
@@ -24,13 +24,36 @@ if (isset($_POST['titulo'])) {
 
         $livro = array('titulo' => $titulo, 'descricao' => $descricao, 'autor' => $autor, 'categoria' => $categoria, 'livroPdf' => $livroPdf, 'livroCapa' => $livroCapa);
 
-        $a = $cadastrar->cadastrar($livro);
-        if ($a) {
-            echo "<script> alert('Cadastrado com SUCESSO!')</script>";
+        $res = $cadastrar->cadastrar($livro);
+        $msg = array();
+        switch ($res) {
+            case 1:
+                $msg = "<p class='feedback-warning'>Livro Já possui Cadastro.</p>";
+                break;
+            case 2:
+                $msg = "<p class='feedback-ok'>Livro Cadastro com Sucesso!</p>";
+                break;
+            case 3:
+                $msg = "<p class='feedback-erro'>Você não pode fazer upload deste tipo de arquivo.</p>";
+                break;    
+            case 4:
+                $msg = "<p class='feedback-erro'>Erro no Cadastro.</p>";
+                break;
+            case 5:
+                $msg = "<p class='feedback-erro'>Escolha um LIVRO e UMA CAPA.</p>";
+                break;    
+            default:
+                $msg = "<p class=''>$res</p>";
+                
         }
     } else {
-        echo "Preencha todos os campos!";
+        $msg = "<p class='feedback-campos'>Preencha todos os campos</p>";
     }
 }
-
-?>
+/**
+ * 1 = Livro Já possui Cadastro DB
+ * 2 = cadastro ok
+ * 3 = Você não pode fazer upload deste tipo de arquivo
+ * 4 = erro no cadastro 
+ * 5 = Escolha um LIVRO e UMA CAPA
+ */

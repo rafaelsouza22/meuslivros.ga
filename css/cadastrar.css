@@ -8,7 +8,7 @@ main{
     
 }
 section{
-    padding: 100px 0px ;
+    padding: 50px 0px ;
     
    
 }
@@ -74,4 +74,48 @@ input[type='text']:focus{
 }
 textarea:focus{
     border: 1px solid #f00;
+}
+
+
+.msg-feedback{
+    height: 40px;
+    width: 100%;
+}
+.msg-feedback p{
+    background-color: rgba(10, 10, 10, 0.649);
+    height: 40px;
+    width: 100%;
+    line-height: 40px;
+    font-size: 18px;
+    padding-left: 10px;
+}
+.feedback-ok{
+    color: #58bb02;
+}
+.feedback-ok::before{
+    content: '\2714';
+    font-family: 'IconicFill';
+    margin-right: 10px;
+}
+
+.feedback-erro{
+    color: #f00;
+}
+.feedback-erro::before{
+    content: "\2718";
+    font-family: 'IconicFill';
+    margin-right: 10px;
+}
+
+.feedback-warning{
+    color: rgb(247, 247, 19);
+}
+.feedback-warning::before{
+    content: "\26A0";
+    font-family: 'IconicFill';
+    margin-right: 10px;
+   
+}
+.feedback-campos{
+    color: #FFF;
 }

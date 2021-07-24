@@ -11,9 +11,11 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
         $senha = filter_var($s, FILTER_SANITIZE_SPECIAL_CHARS);
 
         // chamando o metodo logar
-        $usuario = array('email'=>$email , 'senha'=> $senha);
-        $logar = new Login();
-        $res = $logar->logar($usuario);
+        if(!empty($email) && !empty($senha)){
+            $usuario = array('email'=>$email , 'senha'=> $senha);
+            $logar = new Login();
+            $res = $logar->logar($usuario);
+        }
     }
 }
 ?>
@@ -35,7 +37,7 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
     <?php require_once("./templetes/header.php"); ?>
     <main>
         <section>
-            <form action="./login.php" method="post">
+            <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
                 <h2>LOGAR</h2>
                 <p class='msg'><?php echo (isset($res)) ? $res : '';  ?></p>
                 <input type="email" name="email" id="email" required placeholder="Usuario">

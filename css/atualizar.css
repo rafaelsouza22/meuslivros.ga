@@ -218,8 +218,8 @@ main{
     font-size: 18px;
 }
 .paginacao p a{
-    border: 1px solid rgb(0, 0, 0);
-    padding: 6px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    padding: 3px 6px;
     margin: 0 5px;
 }
 .paginacao p span{
