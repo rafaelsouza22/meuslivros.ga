@@ -11,7 +11,7 @@ require_once("./Model/DeletarLivro.php");
 $atualizar = new atualizarLivro();
 $buscarLivros = new BuscarLivro();
 $selecionar = new SelecionarLivroPorId();
-$deletar = new DeletarLivro();
+$deletarLivro = new DeletarLivro();
 $texto = '';
 $livros = array();
 $erros = '';
@@ -25,11 +25,28 @@ if ((isset($_GET['id_livro']) && !empty($_GET['id_livro']))) {
 
 
 // BUSCAR LIVROS
-if ((isset($_GET['buscar']) && !empty($_GET['buscar']))) {
-    $_SESSION['textoBuscado'] = addslashes($_GET['buscar']);;
-    $livrosBuscados = $buscarLivros->buscar($_SESSION['textoBuscado']);
+if ((isset($_GET['buscar']) && !empty($_GET['buscar']))) { 
+    $t1 = addslashes($_GET['buscar']);;
+    $livrosBuscados = $buscarLivros->buscar($t1);
 }
 
+// APAGAR LIVRO
+if (isset($_POST['btn-apagar'])){
+    if ( isset($_POST['id_livro']) && !empty($_POST['id_livro']) && isset($_POST['titulo']) && !empty($_POST['titulo']) ) {
+       $id = addslashes($_POST['id_livro']);
+       $titulo = addslashes($_POST['titulo']);
+       if($id){
+           $res = $deletarLivro->deletar($id);
+           if($res){
+               $erros = "<p>Livro, $titulo, FOI APAGADO!</p>";
+           }else{
+               $erros = "<p>Erro para Apagar.</p>";
+           }
+           $_GET['id_livro'] = '';
+           $_POST['id_livro'] = '';
+       }
+   }
+}
 
 // para atualizar o livro
 if (isset($_POST['titulo']) && !empty($_POST['titulo'])) {
@@ -51,52 +68,44 @@ if (isset($_POST['titulo']) && !empty($_POST['titulo'])) {
         $livroCapa = $_FILES['livroCapa'];
         $livro = array('id_livro' => $id, 'titulo' => $titulo, 'descricao' => $descricao, 'autor' => $autor, 'categoria' => $categoria, 'livro_pdf' => $livroPdf, 'livro_capa' => $livroCapa);
         $res = $atualizar->atualizar($livro);
-        $id_livro = addslashes($id);
-        $livroSelecionado = $selecionar->selecionarLivro($id_livro);
-        
+        //isset($_GET['id_livro']) && !empty($_GET['id_livro'])
+        if(!empty($id)){
+            //$id_livro = addslashes($_GET['id_livro']);
+            $livroSelecionado = $selecionar->selecionarLivro($id);
+        } 
+
         switch ($res) {
             case 1:
-                $erros = "Você não pode fazer upload deste tipo de arquivo/livro";
+                $erros = "<p>Você não pode fazer upload deste tipo de arquivo/livro</p>";
                 break;
             case 2:
-                $erros = "Sucesso ao atualizar ";
+                $erros = "<p>Sucesso ao atualizar</p>";
                 break;
             case 3:
-                $erros = "Escolha um LIVRO e UMA CAPA";
+                $erros = "<p>Escolha um LIVRO e UMA CAPA</p>";
                 break;
             case 4:
-                $erros = "ERRO ao atualizar ";
+                $erros = "<p>ERRO ao atualizar</p>";
                 break;
             case 5:
-                $erros = "ID não idetificado ";
+                $erros = "<p>ID não idetificado</p>";
                 break;
             case 6:
-                $erros = "Erro na substituição do livro e capa";
+                $erros = "<p>Erro na substituição do livro e capa</p>";
                 break;
             default:
-                $erros = 'ERRO no switch!';
+                $erros = '<p>ERRO no switch!</p>';
         }
     } else {
-        $erros = "Preencha todos os campos!";
+        if(!empty($_POST['id_livro'])){
+            $erros = "<p>Preencha todos os campos!</p>";
+        }
+       
     }
 } 
 
-// APAGAR LIVRO
-if (isset($_POST['btn-apagar']) && !empty($_POST['btn-apagar']) )
-    if ( isset($_POST['id_livro']) && !empty($_POST['id_livro']) && isset($_POST['titulo']) && !empty($_POST['titulo']) ) {
-        $id = addslashes($_POST['id_livro']);
-        $titulo = addslashes($_POST['titulo']);
-        $erros = "ID: $id , APAGADO"; 
 
-        if($id){
-            $res = $deletar->deletar($id);
-            //$res = 1;
-            if($res){
-                $erros = "O Livro,( $titulo ),<br> FOI APAGADO. ";
-            }
-        }
 
-    }
 ?>
 
 

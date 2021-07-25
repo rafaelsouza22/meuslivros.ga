@@ -204,6 +204,63 @@ main{
     border: 1px solid rgb(246, 17, 17);
 }
 
+/*---- MODAL ---------*/
+.notice{
+    background: #fff;
+    border: 1px solid #000;
+    min-height: 160px;
+    width: 400px;
+    padding: 10px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin: -75px 0 0 -200px;
+    z-index: 1;
+}
+.notice h1{
+
+}
+.notice p{
+
+}
+.notice button{
+    border: 1px solid transparent;
+}
+
+.btn-modal-cancelar{
+    background: #a00;
+    color: #fff;
+    padding: 5px 10px;
+    cursor: pointer;
+    position: absolute;
+    right: 100px;
+    bottom: 5px;
+
+}
+.btn-modal-apagar{
+    background: rgb(11, 183, 85);
+    color: #fff;
+    padding: 5px 10px;
+    cursor: pointer;
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+}
+
+.overlay{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background:  rgba(0, 0, 0, .7);
+    top: 0;
+    left: 0;
+}
+.notice, .overlay{
+    display: none;
+}
+
+
+
 /*--- Paginação ----*/
 .paginacao{
     clear: both;

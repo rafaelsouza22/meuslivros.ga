@@ -8,10 +8,29 @@ require_once('./Controller/ControllerAtualizar.php');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <link rel="stylesheet" href="./css/menu.css">
     <link rel="stylesheet" href="./css/atualizar.css">
     <title>Atualizar livros </title>
+    <script>
+        function abrirModal() {
+            let modal = document.querySelector('.notice');
+            modal.style.display = 'block';
+            let overlay = document.querySelector('.overlay');
+            overlay.style.display = 'block';
+        }
+
+        function fechar() {
+            let modal = document.querySelector('.notice');
+            modal.style.display = 'none';
+            let overlay = document.querySelector('.overlay');
+            overlay.style.display = 'none';
+        }
+           
+             
+            
+
+    </script>
 </head>
 
 <body>
@@ -25,7 +44,7 @@ require_once('./Controller/ControllerAtualizar.php');
         </section>
         <section id="form-atualizar">
             <form action="atualizar.php" method="post" enctype="multipart/form-data">
-                <p class="erros"><?php echo isset($erros) ? $erros : ''; ?></p>
+                <div class="erros" id="erros"><?php echo isset($erros) ? $erros : ''; ?></div>
                 <input type="hidden" name="id_livro" id="id_livro" value="<?php if (isset($livroSelecionado)) {
                                                                                 echo $livroSelecionado['id_livro'];
                                                                             } ?>">
@@ -62,12 +81,25 @@ require_once('./Controller/ControllerAtualizar.php');
                     <input type="file" name="livroCapa" id="livroCapa" placeholder="Selecione a capa do livro">
                 </fieldset>
                 <input type="submit" value="Atualizar">
-                <?php 
-                    if (isset($livroSelecionado['id_livro'])) {
-                        echo "<button class='btn-apagar' type='submit' name='btn-apagar' value='deletar'>Apagar Livro</button>";
-                    } 
+                <?php
+                if (isset($livroSelecionado['id_livro'])) {
+                    echo "<button class='btn-apagar' type='button' onclick='abrirModal()'>Apagar Livro</button>";
+                }
                 ?>
-                <!-- <button class="btn-apagar" type="submit" name="btn-apagar" value="deletar">Apagar Livro</button> -->
+
+                <!-- MODAL -->
+                <div class="notice">
+                    <h3>Atenção</h3>
+                    <p>Você quer Apagar:</p>
+                    <p><?php if (isset($livroSelecionado['titulo_livro'])) echo $livroSelecionado['titulo_livro']; ?></p>
+                    <p>
+                        <button class="btn-modal-cancelar" type="button" onclick="fechar()">Cancelar</button>
+                        <button class="btn-modal-apagar" type="submit" name='btn-apagar' >APAGAR</button>
+                    </p>
+                </div>
+                <div class="overlay"></div>
+                <!-- Fim MODAL -->
+
             </form>
         </section>
 
@@ -107,18 +139,26 @@ require_once('./Controller/ControllerAtualizar.php');
         <section class="paginacao">
             <?php
             $numPaginas =  $buscarLivros->numPaginas ? $buscarLivros->numPaginas : 1;
-            $pagina = $buscarLivros->pagina;
-            echo "<p> <a href='atualizar.php?pagina=1&buscar={$_SESSION['textoBuscado']}'>Primeira</a>";
-            for($i = 1; $i <= $numPaginas; $i++) {
-                echo ($i == $pagina) ? "<span>$i</span>" : "<a href='atualizar.php?pagina=$i&buscar={$_SESSION['textoBuscado']}'>$i</a>";
-            }
-            echo "<a href='atualizar.php?pagina=$numPaginas&buscar={$_SESSION['textoBuscado']}'>Última</a></p>";
+            if($numPaginas != 1){
+                
+                $pagina = $buscarLivros->pagina;
+                echo "<p> <a href='atualizar.php?pagina=1'>Primeira</a>";//&buscar={$_SESSION['textoBuscado']}
+                for ($i = 1; $i <= $numPaginas; $i++) {
+                    echo ($i == $pagina) ? "<span>$i</span>" : "<a href='atualizar.php?pagina=$i'>$i</a>";//&buscar={$_SESSION['textoBuscado']}
+                }
+                echo "<a href='atualizar.php?pagina=$numPaginas'>Última</a></p>";//&buscar={$_SESSION['textoBuscado']}
+                }
             ?>
         </section>
-
-
     </main>
     <?php require_once("./templetes/footer.php"); ?>
+    <script>
+        const elem = document.querySelector(".erros > p");
+        if(elem){
+           setTimeout(()=>{elem.innerHTML = ''},5000);   
+        }
+       
+    </script>
 </body>
 
 </html>

@@ -42,12 +42,14 @@ $livros = new SelecionarLivros();
         <section class="paginacao">
             <?php
             $numPaginas =  $livros->numPaginas;
-            $pagina = $livros->pagina;
-            echo "<p><a href='index.php?pagina=1'>Primeira</a> ";
-            for ($i = 1; $i <= $numPaginas; $i++) {
-                echo ($i == $pagina) ? "<span>$i</span>" : "<a href='index.php?pagina=$i'>$i</a>";
-            }
-            echo "<a href='index.php?pagina=$numPaginas'>Última</a></p>";
+            if($numPaginas != 1){    
+                $pagina = $livros->pagina;
+                echo "<p><a href='index.php?pagina=1'>Primeira</a> ";
+                for ($i = 1; $i <= $numPaginas; $i++) {
+                    echo ($i == $pagina) ? "<span>$i</span>" : "<a href='index.php?pagina=$i'>$i</a>";
+                }
+                echo "<a href='index.php?pagina=$numPaginas'>Última</a></p>";
+            }    
             ?>
         </section>
     </main>

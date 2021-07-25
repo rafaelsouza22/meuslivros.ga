@@ -44,6 +44,13 @@
         </section>
     </main>
     <?php require_once("./templetes/footer.php"); ?>
+    <script>
+        const elem = document.querySelector(".msg-feedback");
+        if(elem){
+           setTimeout(()=>{elem.innerHTML = ''},5000);   
+        }
+       
+    </script>
 </body>
 
 </html>

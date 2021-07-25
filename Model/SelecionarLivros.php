@@ -24,8 +24,6 @@ class SelecionarLivros extends Conexao
         $this->numPaginas = intval(ceil($total / $registros)) ;
         $inicio = ($registros *  $this->pagina) - $registros;
         
-
-
         $cmd = "SELECT * FROM livros LIMIT $inicio, $registros";
         $req = $pdo->query($cmd);
         $total = $req->rowCount();        
@@ -34,33 +32,7 @@ class SelecionarLivros extends Conexao
             $dados = $req->fetchAll(PDO::FETCH_ASSOC);
         } else {
             $dados = array();
-        }
-    /*    
-        // foreach ($dados as $value) {
-        //     echo
-        //     "<li>
-        //         <a href='livro.php?id={$value['id_livro']}'>
-        //             <img src='../arquivos/capas/{$value['url_capa_livro']}' alt='{$value['titulo_livro']}'>
-        //         </a>    
-        //         <h3><a href='livro.php?id={$value['id_livro']}  '>{$value['titulo_livro']}</a></h3>
-        //         <p><a href='livro.php?id={$value['id_livro']}'>Baixar ou Ler Online</a></p>
-        //     </li>";
-        // }
-        // echo "<hr><p> <a href='SelecionarLivros.php?pagina=1'>Primeira</a> ";
-        // for ($i = 1; $i <= $numPaginas; $i++) {
-        //     echo ($i == $pagina) ? "<span>$i</span>" : "<a href='SelecionarLivros.php?pagina=$i'>$i</a>";
-        // }
-        // echo "<a href='SelecionarLivros.php?pagina=$numPaginas'>Última</a> </p>";
-    */
-
-        
+        }        
         return $dados;
     }
 }
-// $livros = new SelecionarLivros();
-// $lista = $livros->listarLivros();
-
-// echo "<pre>";
-// var_dump($lista);
-// echo "</pre>";
-// echo $livros->numPaginas;
