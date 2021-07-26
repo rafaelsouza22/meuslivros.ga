@@ -26,10 +26,6 @@ require_once('./Controller/ControllerAtualizar.php');
             let overlay = document.querySelector('.overlay');
             overlay.style.display = 'none';
         }
-           
-             
-            
-
     </script>
 </head>
 
@@ -71,13 +67,13 @@ require_once('./Controller/ControllerAtualizar.php');
                     <option value="Filosofia">Filosofia</option>
                 </select>
                 <fieldset>
-                    <legend><label for="livroPdf">Selecionar um Livro *Somente .PDF</label></legend>
+                    <legend><label for="livroPdf">Selecionar um Livro *.pdf</label></legend>
                     <input type="file" name="livroPdf" id="livroPdf" placeholder="Selecione um Livro" value="<?php if (isset($livroSelecionado)) {
                                                                                                                     echo $livroSelecionado['url_pdf_livro'];
                                                                                                                 } ?>">
                 </fieldset>
                 <fieldset>
-                    <legend><label for="livroCapa">Selecione uma Capa *Somente .JPG </label></legend>
+                    <legend><label for="livroCapa">Selecione uma Capa *.jpg</label></legend>
                     <input type="file" name="livroCapa" id="livroCapa" placeholder="Selecione a capa do livro">
                 </fieldset>
                 <input type="submit" value="Atualizar">
@@ -89,15 +85,16 @@ require_once('./Controller/ControllerAtualizar.php');
 
                 <!-- MODAL -->
                 <div class="notice">
-                    <h3>Atenção</h3>
-                    <p>Você quer Apagar:</p>
-                    <p><?php if (isset($livroSelecionado['titulo_livro'])) echo $livroSelecionado['titulo_livro']; ?></p>
-                    <p>
+                    <h3>Opa!</h3>
+                    <p> Tem certeza que deseja excluir esse livro? </p> 
+                    <p class='modal-titulo-livro'><?php if (isset($livroSelecionado['titulo_livro'])) echo ucfirst($livroSelecionado['titulo_livro']); ?></p>
+                    
+                    <p class='modal-botoes'>
+                        <button class="btn-modal-apagar" type="submit" name='btn-apagar'>SIM, QUERO DELETAR!</button>
                         <button class="btn-modal-cancelar" type="button" onclick="fechar()">Cancelar</button>
-                        <button class="btn-modal-apagar" type="submit" name='btn-apagar' >APAGAR</button>
                     </p>
                 </div>
-                <div class="overlay"></div>
+                <div class="overlay" onclick="fechar()"></div>
                 <!-- Fim MODAL -->
 
             </form>
@@ -108,7 +105,7 @@ require_once('./Controller/ControllerAtualizar.php');
                 <?php
                 echo (!empty($_SESSION['buscar'])) ? "<p>Livros Achados por: " . $_SESSION['buscar'] . "</p>" : '';
                 if (!empty($livrosBuscados)) {
-                    //echo "<p>Livros Achados por: $texto</p>";
+                    echo "<p class='msg-resutados'>Livros Achados por: <span>{$_GET['buscar']}</span></p>";
                     for ($i = 0; $i < count($livrosBuscados); $i++) {
                         foreach ($livrosBuscados[$i] as $value) {
                             echo
@@ -122,7 +119,6 @@ require_once('./Controller/ControllerAtualizar.php');
                         }
                     }
                 } elseif (!empty($livroSelecionado)) {
-                    //echo "<p>Livros Achados por: $texto</p>";
                     echo "<li>
                             <a href='atualizar.php?id_livro={$livroSelecionado['id_livro']}'>
                                 <img src='./arquivos/capas/{$livroSelecionado['url_capa_livro']}' alt='{$livroSelecionado['titulo_livro']}'>
@@ -130,8 +126,6 @@ require_once('./Controller/ControllerAtualizar.php');
                             <h3><a href='atualizar.php?id_livro={$livroSelecionado['id_livro']}'>{$livroSelecionado['titulo_livro']}</a></h3>
                             <p> <a href='atualizar.php?id_livro={$livroSelecionado['id_livro']}'>Editar ou Deletar</a></p>
                         </li>";
-                } else {
-                    echo "Nenhum Livro Achado com o Nome: $texto ";
                 }
                 ?>
             </ul>
@@ -139,25 +133,26 @@ require_once('./Controller/ControllerAtualizar.php');
         <section class="paginacao">
             <?php
             $numPaginas =  $buscarLivros->numPaginas ? $buscarLivros->numPaginas : 1;
-            if($numPaginas != 1){
-                
+            if ($numPaginas != 1) {
+
                 $pagina = $buscarLivros->pagina;
-                echo "<p> <a href='atualizar.php?pagina=1'>Primeira</a>";//&buscar={$_SESSION['textoBuscado']}
+                echo "<p> <a href='atualizar.php?pagina=1'>Primeira</a>"; //&buscar={$_SESSION['textoBuscado']}
                 for ($i = 1; $i <= $numPaginas; $i++) {
-                    echo ($i == $pagina) ? "<span>$i</span>" : "<a href='atualizar.php?pagina=$i'>$i</a>";//&buscar={$_SESSION['textoBuscado']}
+                    echo ($i == $pagina) ? "<span>$i</span>" : "<a href='atualizar.php?pagina=$i'>$i</a>"; //&buscar={$_SESSION['textoBuscado']}
                 }
-                echo "<a href='atualizar.php?pagina=$numPaginas'>Última</a></p>";//&buscar={$_SESSION['textoBuscado']}
-                }
+                echo "<a href='atualizar.php?pagina=$numPaginas'>Última</a></p>"; //&buscar={$_SESSION['textoBuscado']}
+            }
             ?>
         </section>
     </main>
     <?php require_once("./templetes/footer.php"); ?>
     <script>
         const elem = document.querySelector(".erros > p");
-        if(elem){
-           setTimeout(()=>{elem.innerHTML = ''},5000);   
+        if (elem) {
+            setTimeout(() => {
+                elem.innerHTML = ''
+            }, 5000);
         }
-       
     </script>
 </body>
 

@@ -1,34 +1,29 @@
 
-body{
-    background: rgb(226, 220, 220);
-}
-
-main {
+.section {
     width: 80vw;
     height: calc(100vh - 60px);
     margin: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
-
-main section form h2{
-    text-align: center;
-    display: block;
-    margin-bottom: 10px;
-    color: #fff;
-}
-main section form{
+.form{
     width: 400px;
     display: block;
     padding: 20px;
     margin: auto;
     background: rgba(102, 104, 102, 0.698);
     border-radius: 20px;
-
 }
-section form input[type='email'], input[type='password']{
+
+.form h2{
+    text-align: center;
+    display: block;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.form input[type='email'], input[type='password']{
     width: 100%;
     height: 35px;
     margin: 10px 0px;
@@ -37,11 +32,11 @@ section form input[type='email'], input[type='password']{
     border-radius: 10px;
     border: 1px solid #555;
 }
-section form input:focus{
+.form input:focus{
     border: 1px solid #f00;
 }
 
-section form input[type='submit']{
+.form input[type='submit']{
     width: 100%;
     padding: 10px;
     margin: 10px 0px;
@@ -49,7 +44,7 @@ section form input[type='submit']{
     border: 1px solid #555;
     font-size: 16px;
 }
-section form input[type='submit']:hover{
+.form input[type='submit']:hover{
     background: linear-gradient(to bottom ,rgba(235, 227, 227, 0.917) , rgba(187, 181, 181, 0.883) );
     cursor: pointer;
 }
@@ -62,3 +57,13 @@ section form input[type='submit']:hover{
 
 
 
+@media screen and (max-width: 500px){
+    .section {
+        width: 94vw;
+        height: calc(65vh) ;
+    }
+    .form{
+        width: 100%;
+        padding: 10px;       
+    }
+}

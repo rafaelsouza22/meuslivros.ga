@@ -65,7 +65,7 @@ header nav h1 a:hover{
 
 header nav #menu{
     min-width: 340px;
-    min-height: calc(100vh - 70px ) ;
+    min-height: calc(100vh - 60px ) ;
     padding: 10px;
     display: none;
     text-align: center;
@@ -135,23 +135,12 @@ header nav div #menu-form button img {
         width: 100%;    
     }
 }
-@media screen and (max-width: 700px){ 
-    /* header nav{
-        width: 100%;    
-    } */
+@media screen and (max-width: 600px){ 
+    header nav #btn-menu {
+        right: 10px; 
+    }
     header nav #menu{
         min-width: 100vw;
-        /* min-height: calc(100vh - 60px ) ;
-        padding: 10px;
-        display: none;
-        text-align: center;
-        align-items: center;
-        margin: 60px auto;
-        background: rgba(0, 0, 0, .9);
-        position: absolute;
-        right: -320px;  
-        transition: all 1s;
-        z-index: 1; */
     }
 }
 

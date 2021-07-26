@@ -25,10 +25,10 @@ class Login extends Conexao
                 header('Location: ./cadastrar.php');
                 
             }else{
-                return"Login ou Senha invalida";
+                return"<p>Login ou Senha invalida</p>";
             }
         }else{
-            return "Email não tem cadastro!";
+            return "<p>Email não tem cadastro!</p>";
         }
     }
 }

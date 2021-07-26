@@ -17,11 +17,11 @@
     <?php require_once("./templetes/header.php"); ?>
     <main>
 
-        <section>
-            <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" enctype="multipart/form-data">
+        <section class='section'>
+            <form class='form' action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" enctype="multipart/form-data">
                 <div class="msg-feedback"><?php echo isset($msg) ? $msg : ''; ?></div>
                 <input type="text" name="titulo" id="titulo" placeholder="Titulo do livro">
-                <textarea name="descricao" id="descricao" cols="64" rows="10" placeholder="Descrição do livro"></textarea>
+                <textarea name="descricao" id="descricao" cols="64" rows="4" placeholder="Descrição do livro"></textarea>
                 <input type="text" name="autor" id="autor" placeholder="Nome do Autor">
                 <select name="categoria" id="categoria">
                     <option value="Tecnologia">Tecnologia</option>

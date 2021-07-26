@@ -1,39 +1,33 @@
 
-
-main{
+.section{
     width: 80vw;
     margin: auto;
-    height: calc(100vh - 60px) ;
-    /* background: rgba(10, 10, 10, 0.417); */
-    
-}
-section{
     padding: 50px 0px ;
-    
+    min-height: calc(100vh - 130px) ;
    
 }
-main section form{
+.form{
     width: 500px;
     background: rgba(197, 186, 186, 0.828);
     border: 1px solid #000;
     margin:auto;
     padding: 20px;
 }
-main section form input,textarea,select, option{
+.form input,textarea,select, option{
     font-size: 18px;
     padding: 5px;
 }
-form input[type='text'],select,option{
+.form input[type='text'], select, option{
     border: 1px solid #000;
 
 }
-form select,option{
+.form select,option{
     width: 100%;
     margin: 10px 0px;
 
     
 }
-form input[type='text']{
+.form input[type='text']{
     display: block;
     width: 100%;
     height: 40px;
@@ -41,40 +35,43 @@ form input[type='text']{
     padding: 5px;
 
 }
-form textarea{
+.form textarea{
     display: block;
     width: 100%;
     margin: 10px 0px;
     padding: 5px;
 }
-form label, input[type='file']{
+.form textarea:focus{
+    border: 1px solid #f00;
+}
+
+.form label, input[type='file']{
     display: block;
     width: 100%;
     margin-top: 2px;
    
 
 }
-form input[type='submit']{
+.form input[type='submit']{
     display: block;
     width: 100%;
     margin-top: 20px;
     padding: 5px;
+    cursor: pointer;
    
 }
-form fieldset{
+.form fieldset{
     padding: 15px;
     margin: 20px 0px;
 }
-form fieldset legend{
+.form fieldset legend{
     padding: 0px 5px;
     margin: 0;
 }
-input[type='text']:focus{
+.form input[type='text']:focus{
     border: 1px solid #f00;
 }
-textarea:focus{
-    border: 1px solid #f00;
-}
+
 
 
 .msg-feedback{
@@ -119,3 +116,16 @@ textarea:focus{
 .feedback-campos{
     color: #FFF;
 }
+
+@media screen and (max-width: 800px) {
+    .section{
+        width: 96vw; 
+    }
+    .form{
+        width: 100%;
+        padding: 10px; 
+    }
+}
+
+
+

@@ -10,22 +10,22 @@ main{
 }
 
 .livros-listados ul li {
-    width: 230px;
-    min-height: 380px;
+    width: 260px;
+    min-height: 480px;
     float: left;
-    margin: 25px 20px ;
+    margin: 20px ;
     text-align: center;
 }
 .livros-listados ul li img{
-    width: 230px;
-    height: 250px;
+    width: 250px;
+    height: 300px;
     padding: 5px;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, .6);
 }
 .livros-listados ul li img:hover{
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 1);
 }
-.livros-listados ul li h3 {
+.livros-listados ul li h3 a{
     display: block;
     color: rgb(0, 0, 0);
     font-size: 20px;
@@ -82,4 +82,21 @@ main{
 }
 .paginacao p a:hover{
     color: #f00;
+}
+
+
+@media screen and (max-width: 700px) {
+    main{
+        width: 100vw;
+    }
+    .livros-listados ul{
+        width: 100vw;
+    }
+    .livros-listados ul li {
+        float: none;
+        display: block;
+        margin: 20px auto 30px;
+        text-align: center;
+
+    }
 }

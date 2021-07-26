@@ -27,12 +27,13 @@ $livros = new SelecionarLivros();
                     echo "Ainda não há livros cadastrados";
                 } else {
                     foreach ($lista as $value) {
+                        $titulo = ucfirst($value['titulo_livro']);
                         echo
                         "<li>
                             <a href='livro.php?id={$value['id_livro']}'>
                                 <img src='./arquivos/capas/{$value['url_capa_livro']}' alt='{$value['titulo_livro']}'>
                             </a>    
-                            <h3><a href='livro.php?id={$value['id_livro']}  '>{$value['titulo_livro']}</a></h3>
+                            <h3><a href='livro.php?id={$value['id_livro']}  '>{$titulo}</a></h3>
                             <p><a href='livro.php?id={$value['id_livro']}'>Baixar ou Ler Online</a></p>
                         </li>";
                     }

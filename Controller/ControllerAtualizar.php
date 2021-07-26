@@ -68,9 +68,7 @@ if (isset($_POST['titulo']) && !empty($_POST['titulo'])) {
         $livroCapa = $_FILES['livroCapa'];
         $livro = array('id_livro' => $id, 'titulo' => $titulo, 'descricao' => $descricao, 'autor' => $autor, 'categoria' => $categoria, 'livro_pdf' => $livroPdf, 'livro_capa' => $livroCapa);
         $res = $atualizar->atualizar($livro);
-        //isset($_GET['id_livro']) && !empty($_GET['id_livro'])
         if(!empty($id)){
-            //$id_livro = addslashes($_GET['id_livro']);
             $livroSelecionado = $selecionar->selecionarLivro($id);
         } 
 
@@ -100,7 +98,6 @@ if (isset($_POST['titulo']) && !empty($_POST['titulo'])) {
         if(!empty($_POST['id_livro'])){
             $erros = "<p>Preencha todos os campos!</p>";
         }
-       
     }
 } 
 

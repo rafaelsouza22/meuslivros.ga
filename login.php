@@ -1,4 +1,4 @@
-<?php
+ <?php
 session_start();
 require_once("./Model/Login.php");
 $res;
@@ -36,17 +36,23 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
 <body>
     <?php require_once("./templetes/header.php"); ?>
     <main>
-        <section>
-            <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+        <section class='section'>
+            <form class='form' action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
                 <h2>LOGAR</h2>
-                <p class='msg'><?php echo (isset($res)) ? $res : '';  ?></p>
+                <div class='msg'><?php echo (isset($res)) ? $res : '';  ?></div>
                 <input type="email" name="email" id="email" required placeholder="Usuario">
                 <input type="password" name="senha" id="senha" required placeholder="Senha">
                 <input type="submit" value="ENTRAR">
             </form>
         </section>
     </main>
-
+    <script>
+        const elem = document.querySelector(".msg > p");
+        if(elem){
+           setTimeout(()=>{elem.innerHTML = ''},5000);   
+        }
+       
+    </script>
 </body>
 
 </html>

@@ -32,7 +32,7 @@ $livro = $selecionar->selecionarLivro($idLivro);
                     <img src="./arquivos/capas/<?php echo $livro['url_capa_livro'] ?>" alt="<?php echo $livro['titulo_livro']; ?>">
                 </figure>
                 <div id="descicao">
-                    <h1><?php echo $livro['titulo_livro']; ?></h1>
+                    <h1><?php echo ucfirst($livro['titulo_livro']); ?></h1>
                     <p><strong>Autor:</strong> <?php echo $livro['autor_livro']; ?></p>
                     <p><strong>Categoria:</strong> <?php echo $livro['categoria_livro']; ?></p>
                     <p><strong>Descrição:</strong> <?php echo $livro['descricao_livro']; ?> </p>
