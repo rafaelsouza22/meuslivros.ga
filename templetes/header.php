@@ -8,7 +8,7 @@
             </form>
             <ul>
                 <li><a href="index.php">Home</a></li>
-                <li><a href="./login.php">Entrar</a></li>
+                <?php echo ((isset($_SESSION['id_usuario']) && !empty($_SESSION['email_usuario']))) ? '' : " <li><a href='login.php'>Entrar</a></li>" ; ?>
                 <?php echo ((isset($_SESSION['id_usuario']) && !empty($_SESSION['email_usuario']))) ? " <li><a href='cadastrar.php'>Cadastrar</a></li> " : ''; ?>
                 <?php echo ((isset($_SESSION['id_usuario']) && !empty($_SESSION['email_usuario']))) ? " <li><a href='atualizar.php'>Atualizar</a></li> " : ''; ?>
                 <?php echo ((isset($_SESSION['id_usuario']) && !empty($_SESSION['email_usuario']))) ? " <li><a href='sair.php'>Sair</a></li> " : ''; ?>
