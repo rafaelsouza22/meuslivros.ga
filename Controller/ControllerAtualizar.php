@@ -26,7 +26,8 @@ if ((isset($_GET['id_livro']) && !empty($_GET['id_livro']))) {
 
 // BUSCAR LIVROS
 if ((isset($_GET['buscar']) && !empty($_GET['buscar']))) { 
-    $t1 = addslashes($_GET['buscar']);;
+    $t1 = addslashes($_GET['buscar']);
+    $_SESSION['buscar'] = $t1;
     $livrosBuscados = $buscarLivros->buscar($t1);
 }
 

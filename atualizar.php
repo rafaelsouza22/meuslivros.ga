@@ -135,7 +135,7 @@ require_once('./Controller/ControllerAtualizar.php');
         <section id="lista-livros">
             <ul>
                 <?php
-                echo (!empty($_SESSION['buscar'])) ? "<p>Livros Achados por: " . $_SESSION['buscar'] . "</p>" : '';
+                // echo (!empty($_SESSION['buscar'])) ? "<p>Livros Achados por: " . $_SESSION['buscar'] . "</p>" : '';
                 if (!empty($livrosBuscados)) {
                     echo "<p class='msg-resutados'>Livros Achados por: <span>{$_GET['buscar']}</span></p>";
                     for ($i = 0; $i < count($livrosBuscados); $i++) {
@@ -168,11 +168,11 @@ require_once('./Controller/ControllerAtualizar.php');
             if ($numPaginas != 1) {
 
                 $pagina = $buscarLivros->pagina;
-                echo "<p> <a href='atualizar.php?pagina=1'>Primeira</a>"; //&buscar={$_SESSION['textoBuscado']}
+                echo "<p> <a href='atualizar.php?pagina=1&buscar={$_SESSION['buscar']}'>Primeira</a>"; //
                 for ($i = 1; $i <= $numPaginas; $i++) {
-                    echo ($i == $pagina) ? "<span>$i</span>" : "<a href='atualizar.php?pagina=$i'>$i</a>"; //&buscar={$_SESSION['textoBuscado']}
+                    echo ($i == $pagina) ? "<span>$i</span>" : "<a href='atualizar.php?pagina=$i&buscar={$_SESSION['buscar']}'>$i</a>"; //
                 }
-                echo "<a href='atualizar.php?pagina=$numPaginas'>Última</a></p>"; //&buscar={$_SESSION['textoBuscado']}
+                echo "<a href='atualizar.php?pagina=$numPaginas&buscar={$_SESSION['buscar']}'>Última</a></p>"; //
             }
             ?>
         </section>
