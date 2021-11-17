@@ -4,3 +4,5 @@
 paginacao.php
 arquivos/capas/*
 arquivos/livros/*
+!arquivos/capas/aqui-fica-as-capas.txt
+!arquivos/livros/aqui-fica-os-livros.txt
